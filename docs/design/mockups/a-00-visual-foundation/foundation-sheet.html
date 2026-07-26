@@ -1,0 +1,365 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Visual Foundation Sheet — A-00</title>
+<style>
+  /* ================= ZUKA tokens (Vol 25 Ch4/Ch5 via lib/core/theme/) ===== */
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A;
+    --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724; --ink3:#6B6863;
+    --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    /* spacing (PROPOSED) */
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    /* motion */
+    --quick:120ms; --standard:200ms; --route:280ms; --routeBack:220ms; --bloom:700ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif;
+    --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);
+       -webkit-font-smoothing:antialiased;}
+  main{max-width:920px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  a{color:var(--info);}
+  h1{font-family:var(--grotesk);font-size:32px;line-height:38px;font-weight:700;margin:var(--lg) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xxl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  h3{font-family:var(--inter);font-size:18px;line-height:24px;font-weight:600;margin:var(--lg) 0 var(--sm);}
+  p{margin:0 0 var(--md);} .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:640px;}
+  .proposed{display:inline-block;background:var(--ink1);border:1px dashed var(--warning);
+            color:var(--warning);font-size:12px;line-height:16px;font-weight:500;
+            padding:2px var(--sm);border-radius:4px;letter-spacing:.04em;}
+  .lockchip{display:inline-block;background:var(--ink1);border:1px solid var(--ink2);
+            color:var(--ink4);font-size:12px;line-height:16px;font-weight:500;
+            padding:2px var(--sm);border-radius:4px;letter-spacing:.04em;}
+  .grid{display:grid;gap:var(--md);grid-template-columns:repeat(auto-fill,minmax(260px,1fr));}
+  .tok{background:var(--ink1);border:1px solid var(--ink2);border-radius:10px;overflow:hidden;}
+  .tok .swatch{height:64px;display:flex;align-items:flex-end;padding:var(--sm);}
+  .tok .meta{padding:var(--sm) var(--md) var(--md);}
+  .tok .hex{font-family:var(--mono);font-size:14px;color:var(--ink4);}
+  .tok .rule{font-size:14px;line-height:20px;color:var(--ink3);margin-top:var(--xs);}
+  .onlight{color:#0E0C0A;font-family:var(--mono);font-size:12px;}
+  .ondark{color:#F2EFEA;font-family:var(--mono);font-size:12px;}
+  table{border-collapse:collapse;width:100%;}
+  .tblwrap{overflow-x:auto;}
+  th,td{text-align:left;padding:var(--sm) var(--md);border-bottom:1px solid var(--ink2);
+        font-size:14px;line-height:20px;vertical-align:top;}
+  th{color:var(--ink3);font-weight:600;}
+  /* ---- type ramp ---- */
+  .ramp div{padding:var(--sm) 0;border-bottom:1px dashed var(--ink2);}
+  .t-display{font-family:var(--grotesk);font-size:32px;line-height:38px;font-weight:700;}
+  .t-h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;}
+  .t-h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;}
+  .t-h3{font-size:18px;line-height:24px;font-weight:600;}
+  .t-body{font-size:16px;line-height:24px;}
+  .t-bodyStrong{font-size:16px;line-height:24px;font-weight:600;}
+  .t-caption{font-size:14px;line-height:20px;}
+  .t-micro{font-size:12px;line-height:16px;font-weight:500;}
+  .t-data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .ramp .lbl{font-family:var(--mono);font-size:12px;color:var(--ink3);display:block;}
+  /* ---- spacing ---- */
+  .sp{display:flex;align-items:center;gap:var(--md);margin-bottom:var(--sm);}
+  .sp b{width:64px;font-family:var(--mono);font-weight:400;font-size:14px;color:var(--ink4);}
+  .sp span{display:block;height:16px;background:var(--emberGold);border-radius:2px;}
+  /* ---- phone frame + cards ---- */
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phone .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-bottom:var(--md);}
+  .card{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+        padding:var(--md);margin-bottom:var(--md);position:relative;overflow:hidden;}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+        font-weight:500;padding:2px 10px;border-radius:999px;}
+  .pill-live{background:rgba(255,77,77,.14);color:var(--liveCoral);}
+  .pill-soon{background:rgba(245,166,35,.14);color:var(--emberGold);}
+  .pill-tonight{background:rgba(58,157,92,.0);color:var(--ink4);border:1px solid var(--kampalaForest);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--liveCoral);}
+  .c-title{font-size:18px;line-height:24px;font-weight:600;margin:var(--sm) 0 2px;}
+  .c-venue{font-size:14px;line-height:20px;color:var(--ink3);}
+  .c-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:var(--sm);}
+  .c-time{font-family:var(--mono);font-size:14px;color:var(--ink4);}
+  .c-price{font-size:16px;font-weight:600;}
+  .thumb{width:56px;height:56px;border-radius:8px;flex:0 0 auto;
+         background:linear-gradient(135deg,var(--kampalaForest),var(--ink2));
+         display:flex;align-items:center;justify-content:center;color:var(--ink4);
+         font-family:var(--mono);font-size:10px;}
+  /* variant A: ember edge */
+  .vA{padding-left:calc(var(--md) + 6px);}
+  .vA::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--statusc,var(--emberGold));}
+  /* variant B: pulse pill (thumb row) */
+  .vB .head{display:flex;gap:var(--md);align-items:flex-start;}
+  /* variant C: ink frame */
+  .vC{background:transparent;border:1px solid var(--ink2);}
+  /* ---- states ---- */
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%);}}
+  .statebox{min-height:120px;display:flex;flex-direction:column;gap:var(--sm);
+            align-items:flex-start;justify-content:center;}
+  .sysline{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;}
+  .sysdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .btn{display:inline-block;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;
+       padding:10px var(--lg);cursor:pointer;
+       transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  /* ---- motion demos ---- */
+  .pulse{animation:pulse var(--bloom) cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes pulse{from{transform:scale(1);opacity:1;}to{transform:scale(1.5);opacity:.55;}}
+  .demo-slide{width:40px;height:40px;border-radius:8px;background:var(--info);
+      animation:slide var(--route) cubic-bezier(.33,1,.68,1) infinite alternate;}
+  @keyframes slide{from{transform:translateX(0);opacity:.4;}to{transform:translateX(160px);opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .skel::after,.pulse,.demo-slide{animation:none;}
+    .btn{transition:none;}
+  }
+  .never{border-left:3px solid var(--error);padding-left:var(--md);color:var(--ink4);
+         font-size:14px;line-height:20px;}
+  .check{border-left:3px solid var(--success);padding-left:var(--md);}
+  nav.toc{font-size:14px;line-height:24px;color:var(--ink4);}
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · VISUAL FOUNDATION SHEET · A-00 · REVIEWED — FOUNDER-APPROVED 2026-07-18</p>
+<h1>The city, alive — on a 360×800 screen.</h1>
+<p class="lede">Every ZUKA artifact derives from this sheet. Colour, type, and
+spacing are <b>locked brand law</b> (Vol 25 Ch4/Ch5 — spacing ratified via this
+sheet, 2026-07-18); image budgets remain <span class="proposed">PROPOSED</span>;
+card anatomy is decided: <b>Variant A "Ember Edge"</b> is the canonical
+gathering-card expression. Reference device: 2GB Android, 3G, sunlight.</p>
+<nav class="toc">
+  1 · <a href="#colour">Colour</a> &nbsp;·&nbsp; 2 · <a href="#type">Typography</a>
+  &nbsp;·&nbsp; 3 · <a href="#spacing">Spacing (ratify)</a> &nbsp;·&nbsp;
+  4 · <a href="#anatomy">Card anatomy (pick a variant)</a> &nbsp;·&nbsp;
+  5 · <a href="#states">Universal states</a> &nbsp;·&nbsp; 6 · <a href="#motion">Motion</a>
+</nav>
+
+<!-- ================= 1 COLOUR ================= -->
+<h2 id="colour">1 · Colour — "Colour as Information" <span class="lockchip">LOCKED · Vol 25 Ch4</span></h2>
+<p class="caption">Colour carries meaning, never decoration. Coral is the loudest word ZUKA can say — it is reserved.</p>
+<div class="grid">
+  <div class="tok"><div class="swatch" style="background:#FF4D4D"><span class="onlight">#FF4D4D</span></div>
+    <div class="meta"><b>liveCoral</b> <span class="hex">LIVE right now</span>
+    <div class="rule"><b>Reserved.</b> Never decorative, never "featured", never success. A payment success wears <i>success</i>, not coral.</div></div></div>
+  <div class="tok"><div class="swatch" style="background:#F5A623"><span class="onlight">#F5A623</span></div>
+    <div class="meta"><b>emberGold</b> <span class="hex">starting soon · primary action</span>
+    <div class="rule">Energy rising. Gold means "go", not "caution" — cautions wear <i>warning</i>.</div></div></div>
+  <div class="tok"><div class="swatch" style="background:#1A3A2A"><span class="ondark">#1A3A2A</span></div>
+    <div class="meta"><b>kampalaForest</b> <span class="hex">tonight · scheduled</span>
+    <div class="rule">Calm-but-coming. Not a success colour — confirmations wear <i>success</i>.</div></div></div>
+  <div class="tok"><div class="swatch" style="background:#0E0C0A;border-bottom:1px solid #2A2724"><span class="ondark">#0E0C0A</span></div>
+    <div class="meta"><b>midnight</b> <span class="hex">primary background</span>
+    <div class="rule">"The city at 2am." Every surface starts here.</div></div></div>
+</div>
+<h3>Neutral ramp (ink)</h3>
+<div class="tblwrap"><table>
+  <tr><th>Token</th><th>Hex</th><th>Role</th></tr>
+  <tr><td class="data">ink0</td><td class="data">#0E0C0A</td><td>base background (= midnight)</td></tr>
+  <tr><td class="data">ink1</td><td class="data">#1A1815</td><td>raised surface / cards</td></tr>
+  <tr><td class="data">ink2</td><td class="data">#2A2724</td><td>borders / dividers</td></tr>
+  <tr><td class="data">ink3</td><td class="data">#6B6863</td><td>secondary text</td></tr>
+  <tr><td class="data">ink4</td><td class="data">#A8A49E</td><td>tertiary / disabled</td></tr>
+  <tr><td class="data">ink5</td><td class="data">#F2EFEA</td><td>primary text on dark</td></tr>
+</table></div>
+<h3>System colours — deliberately distinct from brand</h3>
+<div class="sysline"><span class="sysdot" style="background:#3A9D5C"></span><span><b>success #3A9D5C</b> — "Ticket secured." NOT kampalaForest.</span></div>
+<div class="sysline"><span class="sysdot" style="background:#E08A2B"></span><span><b>warning #E08A2B</b> — "3G is slow tonight — QR saved offline." NOT emberGold.</span></div>
+<div class="sysline"><span class="sysdot" style="background:#D64545"></span><span><b>error #D64545</b> — "Payment didn't go through. Nothing was charged." NOT liveCoral.</span></div>
+<div class="sysline"><span class="sysdot" style="background:#4A90B8"></span><span><b>info #4A90B8</b> — neutral system messages.</span></div>
+
+<!-- ================= 2 TYPE ================= -->
+<h2 id="type">2 · Typography — the Type Trio <span class="lockchip">LOCKED roles · Vol 25 Ch5</span></h2>
+<p class="caption">Space Grotesk speaks, Inter works, Space Mono counts. Body never renders below 16px — an accessibility floor. (This sheet falls back to system fonts if the trio isn't installed; the app ships the real families.)</p>
+<div class="ramp">
+  <div><span class="lbl">display · Space Grotesk 32/38 · 700 — the Pulse count</span>
+    <span class="t-display">47 events live in Kampala</span></div>
+  <div><span class="lbl">h1 · Space Grotesk 26/32 · 600</span>
+    <span class="t-h1">Tonight in Ntinda</span></div>
+  <div><span class="lbl">h2 · Space Grotesk 21/28 · 600</span>
+    <span class="t-h2">Your gatherings</span></div>
+  <div><span class="lbl">h3 · Inter 18/24 · 600 — card titles</span>
+    <span class="t-h3">Acoustic Night at Ndere Centre</span></div>
+  <div><span class="lbl">body · Inter 16/24 · 400</span>
+    <span class="t-body">Free entry until 8pm, then UGX 10,000 at the gate. Sounds good?</span></div>
+  <div><span class="lbl">bodyStrong · Inter 16/24 · 600 — prices, key facts</span>
+    <span class="t-bodyStrong">UGX 20,000</span></div>
+  <div><span class="lbl">caption · Inter 14/20 · 400 — venue lines, metadata</span>
+    <span class="t-caption" style="color:#6B6863">Ndere Cultural Centre · Ntinda · 2.3 km away</span></div>
+  <div><span class="lbl">micro · Inter 12/16 · 500 — pills, chips, labels</span>
+    <span class="t-micro" style="color:#A8A49E">STARTING SOON</span></div>
+  <div><span class="lbl">data · Space Mono 14/20 · 400 — timestamps, counts, codes</span>
+    <span class="t-data">21:45 · ZKA_TCK_9F3A · 128 going</span></div>
+</div>
+
+<!-- ================= 3 SPACING ================= -->
+<h2 id="spacing">3 · Spacing — 8px grid <span class="lockchip">RATIFIED · Vol 25 Ch5 · 2026-07-18</span></h2>
+<p class="caption">Founder-ratified via this sheet: the scale graduated out of PROPOSED into Vol 25 Ch5
+("The Spacing Scale"). Chosen for being boring and well-supported (the standard Flutter/Material
+convention); canonical source <span class="data">lib/core/theme/zuka_spacing.dart</span>.</p>
+<div class="sp"><b>xs · 4</b><span style="width:4px"></span></div>
+<div class="sp"><b>sm · 8</b><span style="width:8px"></span></div>
+<div class="sp"><b>md · 16</b><span style="width:16px"></span></div>
+<div class="sp"><b>lg · 24</b><span style="width:24px"></span></div>
+<div class="sp"><b>xl · 32</b><span style="width:32px"></span></div>
+<div class="sp"><b>xxl · 48</b><span style="width:48px"></span></div>
+<p class="caption"><span class="proposed">STILL PROPOSED</span> (separate decision, not ratified with spacing):
+image weight budgets — hero/poster ≤ 80 KB · card thumb ≤ 25 KB · icon/avatar ≤ 8 KB.</p>
+
+<!-- ================= 4 CARD ANATOMY ================= -->
+<h2 id="anatomy">4 · Card anatomy — the expressive layer <span class="lockchip">APPROVED · VARIANT A "EMBER EDGE" · 2026-07-18</span></h2>
+<p class="caption">Same locked semantics in all three: status pill (colour = information) · title (h3) ·
+venue + distance (caption) · time (data) · price (bodyStrong, UGX integer). Only the expression differs.
+Shown at 360px, the reference width.</p>
+<div class="phones">
+
+  <div class="phone"><div class="phead" style="color:#3A9D5C">VARIANT A · "EMBER EDGE" — ✔ APPROVED (canonical card anatomy)</div>
+    <div class="card vA" style="--statusc:#FF4D4D">
+      <span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="c-title">Bell Lager Rooftop Sessions</div>
+      <div class="c-venue">Sky Lounge, Nakasero · 1.1 km away</div>
+      <div class="c-row"><span class="c-time">since 20:00 · 214 here</span><span class="c-price">UGX 15,000</span></div>
+    </div>
+    <div class="card vA" style="--statusc:#F5A623">
+      <span class="pill pill-soon">STARTING SOON</span>
+      <div class="c-title">Acoustic Night at Ndere Centre</div>
+      <div class="c-venue">Ndere Cultural Centre, Ntinda · 2.3 km</div>
+      <div class="c-row"><span class="c-time">starts 21:00</span><span class="c-price">UGX 20,000</span></div>
+    </div>
+    <div class="card vA" style="--statusc:#1A3A2A">
+      <span class="pill pill-tonight">TONIGHT</span>
+      <div class="c-title">Poetry &amp; Chill</div>
+      <div class="c-venue">Design Hub Kampala, Bugolobi · 4.8 km</div>
+      <div class="c-row"><span class="c-time">doors 19:30</span><span class="c-price">free entry</span></div>
+    </div>
+  </div>
+
+  <div class="phone"><div class="phead">VARIANT B · "PULSE THUMB" — poster thumb leads; visual-first, ~25KB thumb budget</div>
+    <div class="card vB">
+      <div class="head"><div class="thumb">POSTER</div><div>
+        <span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span>
+        <div class="c-title">Bell Lager Rooftop Sessions</div>
+        <div class="c-venue">Sky Lounge, Nakasero · 1.1 km away</div>
+      </div></div>
+      <div class="c-row"><span class="c-time">since 20:00 · 214 here</span><span class="c-price">UGX 15,000</span></div>
+    </div>
+    <div class="card vB">
+      <div class="head"><div class="thumb">POSTER</div><div>
+        <span class="pill pill-soon">STARTING SOON</span>
+        <div class="c-title">Acoustic Night at Ndere Centre</div>
+        <div class="c-venue">Ndere Cultural Centre, Ntinda · 2.3 km</div>
+      </div></div>
+      <div class="c-row"><span class="c-time">starts 21:00</span><span class="c-price">UGX 20,000</span></div>
+    </div>
+  </div>
+
+  <div class="phone"><div class="phead">VARIANT C · "INK FRAME" — flat outline, no fill; lightest paint, maximum text contrast</div>
+    <div class="card vC">
+      <span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="c-title">Bell Lager Rooftop Sessions</div>
+      <div class="c-venue">Sky Lounge, Nakasero · 1.1 km away</div>
+      <div class="c-row"><span class="c-time">since 20:00 · 214 here</span><span class="c-price">UGX 15,000</span></div>
+    </div>
+    <div class="card vC">
+      <span class="pill pill-soon">STARTING SOON</span>
+      <div class="c-title">Acoustic Night at Ndere Centre</div>
+      <div class="c-venue">Ndere Cultural Centre, Ntinda · 2.3 km</div>
+      <div class="c-row"><span class="c-time">starts 21:00</span><span class="c-price">UGX 20,000</span></div>
+    </div>
+  </div>
+</div>
+<p class="caption"><b>Decision (founder, 2026-07-18): Variant A ("Ember Edge") is canonical.</b> The colour
+law sits where the eye scans (left spine); zero images required on 3G; Variant B's thumb layout
+survives as the with-poster <i>enhancement of A</i>, not a competing anatomy; Variant C is the
+low-band degradation. Binding prior art for A-02 (QR card), A-13 (list rows), A-17 (video
+previews). The 6px spine will be formalised as a token when the first card-class artifact is
+designed.</p>
+
+<!-- ================= 5 STATES ================= -->
+<h2 id="states">5 · Universal state set — every artifact renders all six</h2>
+<p class="caption">Offline and SMS-fallback are designed states, not apologies. Empty states give direction, not mood — and name real places.</p>
+<div class="phones">
+  <div class="phone"><div class="phead">DEFAULT</div>
+    <div class="card vA" style="--statusc:#F5A623">
+      <span class="pill pill-soon">STARTING SOON</span>
+      <div class="c-title">Acoustic Night at Ndere Centre</div>
+      <div class="c-venue">Ndere Cultural Centre, Ntinda · 2.3 km</div>
+      <div class="c-row"><span class="c-time">starts 21:00</span><span class="c-price">UGX 20,000</span></div>
+    </div>
+    <div class="phead">LOADING — skeleton, shimmer is T1 feedback</div>
+    <div class="card">
+      <div class="skel" style="width:96px;height:16px;margin-bottom:12px"></div>
+      <div class="skel" style="width:80%;height:20px;margin-bottom:8px"></div>
+      <div class="skel" style="width:60%;height:14px"></div>
+    </div>
+    <div class="phead">EMPTY — direction, not mood</div>
+    <div class="card statebox">
+      <div class="t-h3">A quiet night in Ntinda</div>
+      <p class="caption" style="margin:0">Nothing live within 3 km right now. 12 gatherings are on
+      across Kampala — or be the reason the city wakes up.</p>
+      <button class="btn btn-ghost">See all of Kampala</button>
+    </div>
+  </div>
+  <div class="phone"><div class="phead">OFFLINE — a designed state</div>
+    <div class="card statebox">
+      <div class="sysline"><span class="sysdot" style="background:#E08A2B"></span>
+      <span><b>You're offline.</b> Showing Kampala as of <span class="data">21:12</span>.
+      Your saved tickets and QR codes still work without a connection.</span></div>
+      <button class="btn btn-ghost">Get tonight by SMS</button>
+    </div>
+    <div class="phead">ERROR — plain, blame-free, retryable</div>
+    <div class="card statebox">
+      <div class="sysline"><span class="sysdot" style="background:#D64545"></span>
+      <span><b>That didn't load.</b> The network dropped mid-request. Nothing was
+      charged, nothing was lost.</span></div>
+      <button class="btn">Try again</button>
+    </div>
+    <div class="phead">SUCCESS — wears success green, never coral</div>
+    <div class="card statebox">
+      <div class="sysline"><span class="sysdot" style="background:#3A9D5C"></span>
+      <span><b>Ticket secured.</b> <span class="data">ZKA_TCK_9F3A</span> · Acoustic Night,
+      21:00 tonight. Your QR is saved on this phone.</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= 6 MOTION ================= -->
+<h2 id="motion">6 · Motion — "Motion as Information" <span class="lockchip">LOCKED · founder-approved 2026-07-16</span></h2>
+<p class="caption">Calm, instant infrastructure by default; motion is reserved for liveness. This page honours
+your OS reduce-motion setting — flip it on and every demo below freezes to a static frame.</p>
+<div class="tblwrap"><table>
+  <tr><th>Tier</th><th>Meaning</th><th>Tokens</th><th>Demo</th></tr>
+  <tr><td><b>T0 · structure</b></td><td>navigation, tabs, chrome — silent or near-instant</td>
+      <td class="data">instant (0ms)</td><td class="caption">no demo — that's the point</td></tr>
+  <tr><td><b>T1 · feedback</b></td><td>touch response, skeletons, route pushes (Feed → Detail = 280ms)</td>
+      <td class="data">quick 120 · standard 200 · route 280 · routeBack 220</td>
+      <td><div class="demo-slide"></div><button class="btn" style="margin-top:8px">Press me · 120ms</button></td></tr>
+  <tr><td><b>T2 · life</b></td><td>the ONLY expressive motion — LIVE pulse, the Pulse count</td>
+      <td class="data">bloom 700 · easeOutBack</td>
+      <td><span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span></td></tr>
+</table></div>
+<h3>Never-list</h3>
+<p class="never">Money and trust surfaces never animate (instant) · bloom on a non-life surface =
+the same violation class as decorative coral · motion never gates a sacred proof (transitions
+interruptible; the 3-tap path never waits) · no stagger cascades on lists · opacity+transform
+only · everything collapses under reduce-motion.</p>
+
+<!-- ================= QUALITY BAR ================= -->
+<h2>Session self-check (Constitution §7)</h2>
+<p class="check caption">States: all six rendered · Sacred proofs: untouched (sheet is not a flow) ·
+Terminology: Gathering/Person, trust never numeric · Money: UGX integer format only ·
+Coral: LIVE contexts only (pill, dot, tier demo) · Contrast: body ink5 on midnight ≈ 15:1, secondary
+ink3 used ≥14px only · 360×800: card columns are 360px · Data: all fields exist in the feed RPC
+(title, venue, distance, time, count, price, status) · No dark patterns: honest counts, no fake
+urgency · Expressive layer: presented as 3 named variants, not silently locked.</p>
+<p class="micro">ZUKA · docs/design/mockups/a-00-visual-foundation/foundation-sheet.html · feeds
+ZUKA_DESIGN_LIVING_DOC.md (the spec of record) · logo renders as labelled placeholder — real assets
+in assets/brand/</p>
+</main>

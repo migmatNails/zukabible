@@ -1,0 +1,210 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Scanner — A-07</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  .card{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+        padding:var(--md);margin-bottom:var(--md);position:relative;overflow:hidden;}
+  .spine{padding-left:calc(var(--md) + 6px);}
+  .spine::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                 background:var(--statusc,var(--success));}
+  .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       box-sizing:border-box;cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .btnrow{display:flex;gap:var(--sm);} .btnrow .btn{flex:1;width:auto;}
+  .field{background:var(--ink0);border:1px solid var(--ink2);border-radius:8px;
+         padding:12px var(--md);color:var(--ink4);font-size:16px;margin-bottom:var(--sm);
+         font-family:var(--mono);letter-spacing:.12em;}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .pinbox{background:var(--ink0);border:1px dashed var(--ink3);border-radius:10px;
+          padding:var(--md);text-align:center;margin:var(--sm) 0 var(--md);}
+  .code{font-family:var(--mono);font-size:26px;line-height:32px;letter-spacing:.18em;}
+  .pinhidden{font-family:var(--mono);font-size:26px;line-height:32px;letter-spacing:.3em;color:var(--ink3);}
+  /* camera viewport */
+  .cam{background:
+        radial-gradient(120px 90px at 60% 42%, rgba(242,239,234,.08), transparent 70%),
+        linear-gradient(180deg,#141210,#0A0908);
+       border:1px solid var(--ink2);border-radius:12px;height:220px;position:relative;
+       margin-bottom:var(--md);overflow:hidden;}
+  .reticle{position:absolute;inset:18% 22%;border:2px solid rgba(242,239,234,.55);border-radius:12px;}
+  .reticle::after{content:"";position:absolute;left:8px;right:8px;top:50%;height:2px;
+                  background:rgba(245,166,35,.7);}
+  .torch{position:absolute;right:10px;bottom:10px;background:var(--ink1);border:1px solid var(--ink2);
+         border-radius:999px;padding:6px 14px;font-size:14px;color:var(--ink4);}
+  .synchip{position:absolute;left:10px;bottom:10px;background:var(--ink1);border:1px solid var(--ink2);
+           border-radius:999px;padding:6px 14px;font-size:14px;color:var(--ink4);}
+  /* verdict cards — big, glanceable, night-legible */
+  .verdict{border-radius:12px;padding:var(--lg) var(--md);text-align:center;margin-bottom:var(--md);}
+  .v-word{font-family:var(--grotesk);font-size:32px;line-height:38px;font-weight:700;margin:0 0 var(--xs);}
+  .v-line{font-size:16px;line-height:24px;margin:0 0 var(--xs);}
+  .v-ref{font-family:var(--mono);font-size:14px;line-height:20px;opacity:.85;}
+  .v-green{background:rgba(58,157,92,.16);color:var(--success);}
+  .v-amber{background:rgba(224,138,43,.16);color:var(--warning);}
+  .v-red{background:rgba(214,69,69,.16);color:var(--error);}
+  .v-sub{color:var(--ink4);font-size:14px;line-height:20px;margin:var(--xs) 0 0;}
+  .rowline{display:flex;justify-content:space-between;gap:var(--sm);font-size:14px;line-height:22px;
+           border-bottom:1px solid var(--ink2);padding:var(--xs) 0;color:var(--ink4);}
+  .rowline .data{color:var(--ink5);}
+  @media (prefers-reduced-motion: reduce){ .btn{transition:none;} }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-07 · SCANNER — M0 CHECK-IN · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>The gate, in the dark, with no signal.</h1>
+<p class="lede">§10 rendered per the A-00 foundation, operator-first: one verdict at a time, display-size
+words, colour + one line + <span class="data">ticket_ref</span> — the screen is readable at arm's
+length at a night gate. Security grammar is law: neutral mismatch copy, no attempt counts, no
+<span class="data">person_id</span> ever shown or stored, coral never on a verdict.</p>
+
+<div class="phones">
+
+  <!-- 1 hand-off -->
+  <div class="phone"><div class="phead">1 · ORGANISER HAND-OFF — a security surface. PIN on hold-to-reveal, once; screenshot-blocked (FLAG_SECURE).</div>
+    <div class="card">
+      <p style="margin:0 0 var(--xs);font-weight:600">Your gate is ready.</p>
+      <p class="caption" style="margin:0 0 var(--md)">Give this code and PIN to whoever runs your
+      gate. Anyone with both can scan tickets for this gathering — share them like keys.</p>
+      <div class="pinbox"><div class="micro" style="margin-bottom:4px">GATE CODE</div>
+        <div class="code">GTE-4K7Q</div></div>
+      <div class="pinbox"><div class="micro" style="margin-bottom:4px">PIN — HOLD TO REVEAL</div>
+        <div class="pinhidden">••••••</div></div>
+      <div class="ribbon" style="margin-bottom:var(--md)"><span class="rdot" style="background:var(--warning)"></span>
+        <span><b>You can't change these once shared</b> — hand them only to your gate person.</span></div>
+      <button class="btn btn-ghost">Share gate code</button>
+      <p class="micro" style="margin:var(--sm) 0 0">Gate list generated with the session — 214
+      tickets saved. The gate works with no signal.</p>
+    </div>
+  </div>
+
+  <!-- 2 operator entry -->
+  <div class="phone"><div class="phead">2 · OPERATOR ENTRY — /scan, any phone, no ZUKA account. One neutral mismatch line; lockout is honest and self-healing.</div>
+    <div class="card">
+      <p style="margin:0 0 var(--md);font-weight:600">Run a gate</p>
+      <div class="field">GATE CODE</div>
+      <div class="field">6-DIGIT PIN</div>
+      <button class="btn">Open the gate</button>
+    </div>
+    <div class="ribbon"><span class="rdot" style="background:var(--error)"></span>
+      <span><b>That code and PIN don't match an active gate.</b>
+      <span class="micro">(one message for wrong-PIN / unknown / expired — never which, never
+      attempts remaining)</span></span></div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>Too many tries.</b> This gate is paused for a few minutes — it unlocks on its own.
+      <span class="micro">(ZK423 · 5/10min; auto-clear, no human unlock)</span></span></div>
+  </div>
+
+  <!-- 3 manifest -->
+  <div class="phone"><div class="phead">3 · GATE LIST — the offline authority, sized for 3G. Text-only payload; refresh is manual, never over the gate's data budget.</div>
+    <div class="card spine" style="--statusc:var(--info)">
+      <p style="margin:0 0 var(--xs)"><b>Downloading gate list…</b></p>
+      <p class="caption" style="margin:0">86 KB on 3G — a few seconds.</p>
+    </div>
+    <div class="card spine" style="--statusc:var(--success)">
+      <p style="margin:0 0 var(--xs)"><b>Gate list saved — 214 tickets.</b></p>
+      <p class="caption" style="margin:0">Works with no signal. Made 20:41 · valid 24 h.</p>
+    </div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>List is 3 h old</b> — refresh when you have signal.</span></div>
+    <div class="ribbon"><span class="rdot" style="background:var(--error)"></span>
+      <span><b>List expired.</b> Offline scanning paused — online scans still work. Ask the
+      organiser to regenerate.</span></div>
+  </div>
+
+  <!-- 4 scan + verdicts 1 -->
+  <div class="phone"><div class="phead">4 · SCAN SCREEN — camera full-screen, torch one tap, one verdict at a time. Green + amber verdicts.</div>
+    <div class="cam"><div class="reticle"></div>
+      <span class="synchip">4 waiting to sync</span><span class="torch">🔦 Torch</span></div>
+    <div class="verdict v-green"><p class="v-word">GO AHEAD</p>
+      <p class="v-ref">ZKA_TCK_9F3A</p></div>
+    <div class="verdict v-green"><p class="v-word">IN ✓</p>
+      <p class="v-line">Will confirm when you're back online.</p>
+      <p class="v-ref">ZKA_TCK_2C81 · offline</p></div>
+    <div class="verdict v-amber"><p class="v-word">ALREADY IN</p>
+      <p class="v-line">If that wasn't them, call the organiser.</p>
+      <p class="v-ref">ZKA_TCK_77D0</p></div>
+    <p class="micro">The system flags; the human acts (ADR-014). Quiet tone pair only — the screen
+    is the verdict, no shaming sounds.</p>
+  </div>
+
+  <!-- 5 verdicts 2 -->
+  <div class="phone"><div class="phead">5 · RED + STALE — never accuse; the attendee's own phone is the disambiguator. Every reject offers typed ticket_ref fallback.</div>
+    <div class="verdict v-red"><p class="v-word">NOT ON THIS LIST</p>
+      <p class="v-line">Their ticket may be newer than the list.</p>
+      <p class="v-sub">Already used it? Their ticket screen shows "You're in."
+      Just issued? Refresh the list.</p></div>
+    <div class="verdict v-amber"><p class="v-word">NOT VALID NOW</p>
+      <p class="v-line">This ticket isn't valid any more — expired or cancelled.</p>
+      <p class="v-ref">ZKA_TCK_5B22</p></div>
+    <div class="verdict v-amber"><p class="v-word">CHECK THE LIST AGE</p>
+      <p class="v-line">The gate list is 3 h old — their ticket may be newer. Ask them to open
+      their ticket fresh, or refresh the list.</p></div>
+    <div class="card">
+      <p class="caption" style="margin:0 0 var(--sm)">No scan? Type the code they read out:</p>
+      <div class="field">ZKA_TCK_····</div>
+      <button class="btn btn-ghost">Check code</button>
+    </div>
+  </div>
+
+  <!-- 6 sync + close -->
+  <div class="phone"><div class="phead">6 · SYNC RECONCILE + CLOSE — nothing dropped silently; capacity is surfaced, never blocking (ADR-014).</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>Over the venue count by 6 — worth a look.</b> The gate stays open.</span></div>
+    <div class="card">
+      <p style="margin:0 0 var(--sm);font-weight:600">Synced 4 admissions</p>
+      <div class="rowline"><span class="data">ZKA_TCK_2C81</span><span style="color:var(--success)">Confirmed</span></div>
+      <div class="rowline"><span class="data">ZKA_TCK_90AE</span><span style="color:var(--success)">Confirmed</span></div>
+      <div class="rowline"><span class="data">ZKA_TCK_77D0</span><span style="color:var(--warning)">Already in — listed for organiser</span></div>
+      <div class="rowline" style="border-bottom:none"><span class="data">ZKA_TCK_5B22</span><span style="color:var(--warning)">State changed after list — flagged</span></div>
+    </div>
+    <div class="card">
+      <p style="margin:0 0 var(--xs);font-weight:600">Close this gate?</p>
+      <p class="caption" style="margin:0 0 var(--md)">Your list and queue clear after a final sync.
+      2 admissions haven't synced — closing without signal asks you twice before discarding
+      anything.</p>
+      <div class="btnrow"><button class="btn btn-ghost">Stay open</button>
+        <button class="btn">Sync &amp; close</button></div>
+      <p class="micro" style="margin:var(--sm) 0 0">Device-local: the server session stays live
+      until it expires — the deactivate RPC is the named M0 security dependency (§10.11).</p>
+    </div>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): all §10.6 five verdict
+states + entry/lockout/manifest/sync/close rendered · night-legible (verdict words at display size,
+32px) · neutral mismatch copy, no attempt counts · no <span class="data">person_id</span> anywhere —
+verdict + <span class="data">ticket_ref</span> only · coral absent from every verdict (a scan result
+is never a live state) · typed ticket_ref fallback on rejects · offline is the designed default ·
+no invented data: every surface maps to the S006/S012/S013 rails + check_in_ticket contract ·
+Ember Edge spine on status cards; verdict cards use full-bleed state colour for glanceability
+(a deliberate operator-screen variation, logged for founder eyes).</p>
+<p class="micro">ZUKA · docs/design/mockups/a-07-scanner-checkin/scanner.html · feeds
+ZUKA_DESIGN_LIVING_DOC.md §10 (the spec of record) · build blocked on camera/QR-decode dep
+(ADR-030 candidate) + deactivate RPC (§10.11)</p>
+</main>

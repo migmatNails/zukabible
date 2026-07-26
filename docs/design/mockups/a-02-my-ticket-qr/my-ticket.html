@@ -1,0 +1,242 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA My Ticket — A-02</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms; --standard:200ms; --settle:400ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:640px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  /* ticket card — Ember Edge (A-00 approved): 6px state spine */
+  .tcard{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+         padding:var(--md) var(--md) var(--md) calc(var(--md) + 6px);
+         position:relative;overflow:hidden;margin-bottom:var(--md);}
+  .tcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                 background:var(--statusc,var(--success));}
+  .banner{display:flex;gap:var(--sm);align-items:center;font-size:14px;line-height:20px;
+          font-weight:600;padding:var(--sm) var(--md);border-radius:8px;margin-bottom:var(--md);}
+  .b-issued{background:rgba(58,157,92,.14);color:var(--success);}
+  .b-pending{background:rgba(245,166,35,.14);color:var(--emberGold);}
+  .b-checkedin{background:rgba(58,157,92,.14);color:var(--success);}
+  .b-expired{background:rgba(214,69,69,.14);color:var(--error);}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+        font-weight:500;padding:2px 10px;border-radius:999px;}
+  .pill-live{background:rgba(255,77,77,.14);color:var(--liveCoral);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--liveCoral);}
+  .pulse{animation:pulse 700ms cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.5);opacity:.55}}
+  .g-title{font-size:18px;line-height:24px;font-weight:600;margin:0 0 2px;}
+  .g-venue{font-size:14px;line-height:20px;color:var(--ink3);}
+  .g-time{font-family:var(--mono);font-size:14px;color:var(--ink4);margin-top:var(--xs);}
+  /* QR surface — max contrast on white, readability beats brand */
+  .qrwrap{background:#FFFFFF;border-radius:12px;padding:var(--md);margin:var(--md) 0;
+          display:flex;flex-direction:column;align-items:center;}
+  .qr-settle{animation:settle var(--settle) cubic-bezier(.33,1,.68,1);}
+  @keyframes settle{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+  canvas.qr{width:240px;height:240px;image-rendering:pixelated;}
+  .ref{font-family:var(--mono);font-size:14px;line-height:20px;color:#0E0C0A;margin-top:var(--sm);}
+  .gate{text-align:center;font-weight:600;margin:0 0 var(--xs);}
+  .fallback{text-align:center;font-size:14px;color:var(--ink3);margin:0 0 var(--md);}
+  .btnrow{display:flex;gap:var(--sm);}
+  .btn{flex:1;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  /* PendingMeter — calm indeterminate; no countdown, no % */
+  .meter{height:6px;border-radius:3px;background:var(--ink2);overflow:hidden;position:relative;margin:var(--md) 0;}
+  .meter i{position:absolute;top:0;bottom:0;width:40%;border-radius:3px;background:var(--emberGold);
+           animation:drift 2400ms cubic-bezier(.45,.05,.55,.95) infinite alternate;}
+  @keyframes drift{from{left:-10%}to{left:70%}}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  .checkmoment{display:flex;flex-direction:column;align-items:center;gap:var(--sm);
+               padding:var(--xl) 0;}
+  .bigcheck{width:72px;height:72px;border-radius:50%;background:rgba(58,157,92,.14);
+            display:flex;align-items:center;justify-content:center;
+            color:var(--success);font-size:36px;font-weight:700;}
+  @media (prefers-reduced-motion: reduce){
+    .pulse,.meter i,.skel::after{animation:none;}
+    .qr-settle{animation:none;}
+    .btn{transition:none;}
+  }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-02 · MY TICKET — QR CARD + PENDING METER · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>The QR is the product.</h1>
+<p class="lede">§8's ticket screen rendered per the A-00 foundation: Ember Edge spine carries the
+<b>ticket state</b> colour (gold pending · green issued/in · red expired — coral appears only as the
+gathering's own live pill). Every field shown exists in <span class="data">my_tickets()</span>;
+the QR draws locally from <span class="data">qr_token</span> — zero images, zero network. Tap budget:
+this screen is the destination of the 3-tap proof; it adds no taps.</p>
+
+<div class="phones">
+
+  <!-- ISSUED -->
+  <div class="phone"><div class="phead">1 · ISSUED — the default. QR settles in (T2, 400ms); screen brightness raised while visible.</div>
+    <div class="tcard" style="--statusc:var(--success)">
+      <div class="banner b-issued">You're going</div>
+      <div class="g-title">Acoustic Night at Ndere Centre</div>
+      <div class="g-venue">Ndere Cultural Centre, Ntinda</div>
+      <div class="g-time">tonight 21:00 – 23:30</div>
+      <div class="qrwrap qr-settle">
+        <canvas class="qr" width="29" height="29" data-seed="7"></canvas>
+        <div class="ref">ZKA_TCK_9F3A</div>
+      </div>
+      <p class="gate">Show this at the gate.</p>
+      <p class="fallback">No scan? Give them this code: <span class="data" style="color:var(--ink5)">ZKA_TCK_9F3A</span></p>
+      <div class="btnrow"><button class="btn btn-ghost">Directions</button><button class="btn btn-ghost">Share</button></div>
+      <p class="micro" style="margin:var(--sm) 0 0">Share = gift seam, note only this pass (transfer engine unbuilt).</p>
+    </div>
+  </div>
+
+  <!-- ISSUED + LIVE -->
+  <div class="phone"><div class="phead">1b · ISSUED while the gathering is LIVE — coral appears, but only as the gathering's pill.</div>
+    <div class="tcard" style="--statusc:var(--success)">
+      <div class="banner b-issued">You're going</div>
+      <span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="g-title" style="margin-top:var(--sm)">Acoustic Night at Ndere Centre</div>
+      <div class="g-venue">Ndere Cultural Centre, Ntinda</div>
+      <div class="g-time">since 21:00 · ends 23:30</div>
+      <div class="qrwrap">
+        <canvas class="qr" width="29" height="29" data-seed="7"></canvas>
+        <div class="ref">ZKA_TCK_9F3A</div>
+      </div>
+      <p class="gate">Show this at the gate.</p>
+      <div class="btnrow"><button class="btn">Directions</button></div>
+    </div>
+  </div>
+
+  <!-- PENDING -->
+  <div class="phone"><div class="phead">2 · PAYMENT_PENDING — no QR exists yet. PendingMeter resumes; no countdown theater.</div>
+    <div class="tcard" style="--statusc:var(--emberGold)">
+      <div class="banner b-pending">Waiting for payment</div>
+      <div class="g-title">Acoustic Night at Ndere Centre</div>
+      <div class="g-venue">Ndere Cultural Centre, Ntinda</div>
+      <div class="g-time">tonight 21:00</div>
+      <div class="meter"><i></i></div>
+      <p style="margin:0 0 var(--xs)"><b>Approve the payment on your phone.</b></p>
+      <p class="caption" style="margin:0 0 var(--md)">MTN will ask you to confirm. This usually
+      takes under a minute — you've been waiting about a minute.</p>
+      <div class="btnrow"><button class="btn btn-ghost">I've paid — check now</button></div>
+      <p class="micro" style="margin:var(--sm) 0 0">Polling quietly: every 4s for 2 min, then every 10s (§7).
+      Amount and buttons never animate — the meter alone carries "waiting".</p>
+    </div>
+  </div>
+
+  <!-- CHECKED_IN -->
+  <div class="phone"><div class="phead">3 · CHECKED_IN — token rotated to NULL; never a dead QR. Success, not coral.</div>
+    <div class="tcard" style="--statusc:var(--success)">
+      <div class="banner b-checkedin">You're in</div>
+      <div class="checkmoment">
+        <div class="bigcheck">✓</div>
+        <p style="margin:0;font-weight:600">You're in. Enjoy the night.</p>
+        <p class="caption" style="margin:0">Checked in 21:12 · Ndere Cultural Centre</p>
+      </div>
+      <div class="g-title">Acoustic Night at Ndere Centre</div>
+      <div class="g-time">since 21:00 · ends 23:30</div>
+    </div>
+  </div>
+
+  <!-- EXPIRED -->
+  <div class="phone"><div class="phead">4 · EXPIRED — honest reconcile copy + support ribbon. Error red, never coral.</div>
+    <div class="tcard" style="--statusc:var(--error)">
+      <div class="banner b-expired">Ticket expired</div>
+      <div class="g-title">Acoustic Night at Ndere Centre</div>
+      <div class="g-venue">Ndere Cultural Centre, Ntinda</div>
+      <div class="g-time">was tonight 21:00</div>
+      <p style="margin:var(--md) 0 var(--xs)"><b>The payment window closed before MoMo confirmed.</b></p>
+      <p class="caption" style="margin:0 0 var(--md)">If money left your account, it reconciles
+      automatically — nothing is lost. Keep your MoMo SMS as the reference.</p>
+      <div class="ribbon"><span class="rdot" style="background:var(--info)"></span>
+        <span>Need a hand? <b>WhatsApp ZUKA support</b> with code
+        <span class="data">ZKA_TCK_9F3A</span>.</span></div>
+      <div class="btnrow"><button class="btn">Try again from the gathering</button></div>
+    </div>
+  </div>
+
+  <!-- OFFLINE -->
+  <div class="phone"><div class="phead">5 · OFFLINE — the state that matters. Cached QR + stale ribbon; the gate's scanner is the authority.</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>You're offline.</b> Your ticket still works — the QR below is saved on this phone.</span></div>
+    <div class="tcard" style="--statusc:var(--success)">
+      <div class="banner b-issued">You're going</div>
+      <div class="g-title">Acoustic Night at Ndere Centre</div>
+      <div class="g-venue">Ndere Cultural Centre, Ntinda</div>
+      <div class="g-time">tonight 21:00 – 23:30</div>
+      <div class="qrwrap">
+        <canvas class="qr" width="29" height="29" data-seed="7"></canvas>
+        <div class="ref">ZKA_TCK_9F3A</div>
+      </div>
+      <p class="fallback" style="margin-bottom:0">Saved 3h ago — refresh when you're online.</p>
+    </div>
+  </div>
+
+  <!-- LOADING + ERROR -->
+  <div class="phone"><div class="phead">6 · LOADING — skeleton keeps the QR's place (no layout jump at the gate).</div>
+    <div class="tcard" style="--statusc:var(--ink2)">
+      <div class="skel" style="width:120px;height:20px;margin-bottom:12px"></div>
+      <div class="skel" style="width:80%;height:20px;margin-bottom:8px"></div>
+      <div class="skel" style="width:55%;height:14px;margin-bottom:16px"></div>
+      <div class="skel" style="width:240px;height:240px;margin:0 auto 16px;border-radius:12px"></div>
+      <div class="skel" style="width:70%;height:14px;margin:0 auto"></div>
+    </div>
+    <div class="phead" style="margin-top:var(--lg)">7 · ERROR — blame-free, retry; cached QR shown if one exists (never blank at the gate).</div>
+    <div class="tcard" style="--statusc:var(--ink2)">
+      <div class="ribbon" style="margin:0 0 var(--md)"><span class="rdot" style="background:var(--error)"></span>
+        <span><b>That didn't load.</b> The network dropped. If your ticket was already saved,
+        it's still on this phone.</span></div>
+      <div class="btnrow"><button class="btn">Try again</button></div>
+    </div>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): 7 states rendered incl.
+offline-first · 3-tap proof untouched (destination screen, zero added taps) · trust never numeric ·
+no price shown — <span class="data">my_tickets()</span> carries none (open question, not invented
+data) · coral only on the live pill · QR max-contrast on white · money surfaces static (meter is the
+only motion in PENDING; amounts/buttons never animate) · reduce-motion freezes everything ·
+Ember Edge spine = ticket-state colour (A-00 binding prior art).</p>
+<p class="micro">ZUKA · docs/design/mockups/a-02-my-ticket-qr/my-ticket.html · feeds ZUKA_DESIGN_LIVING_DOC.md §8 (the spec of record)</p>
+</main>
+
+<script>
+/* Placeholder QR: deterministic 29×29 matrix drawn locally — stands in for the
+   pure-Dart QR painter (§8 open question). Not a scannable code. */
+document.querySelectorAll('canvas.qr').forEach(function(c){
+  var ctx=c.getContext('2d'), n=29, s=parseInt(c.dataset.seed||'7',10);
+  ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,n,n); ctx.fillStyle='#0E0C0A';
+  var r=function(){ s=(s*1103515245+12345)&0x7fffffff; return s/0x7fffffff; };
+  for(var y=0;y<n;y++)for(var x=0;x<n;x++){ if(r()<0.45) ctx.fillRect(x,y,1,1); }
+  function finder(cx,cy){ ctx.fillStyle='#0E0C0A'; ctx.fillRect(cx,cy,7,7);
+    ctx.fillStyle='#FFFFFF'; ctx.fillRect(cx+1,cy+1,5,5);
+    ctx.fillStyle='#0E0C0A'; ctx.fillRect(cx+2,cy+2,3,3); }
+  finder(0,0); finder(n-7,0); finder(0,n-7);
+});
+</script>

@@ -1,0 +1,215 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Messages + Scaffolds — A-15 · A-16</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  h3{font-size:18px;line-height:24px;font-weight:600;margin:var(--lg) 0 var(--sm);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .cols{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .col{width:360px;max-width:100%;flex:0 0 auto;}
+  /* message bubbles */
+  .push{background:var(--ink1);border:1px solid var(--ink2);border-radius:14px;
+        padding:var(--sm) var(--md);margin-bottom:var(--sm);}
+  .push .app{display:flex;justify-content:space-between;font-size:12px;line-height:16px;
+             color:var(--ink3);margin-bottom:2px;}
+  .push .t{font-size:14px;line-height:20px;font-weight:600;}
+  .push .b{font-size:14px;line-height:20px;color:var(--ink4);}
+  .sms{background:#12211A;border:1px solid var(--ink2);border-radius:14px 14px 14px 4px;
+       padding:var(--sm) var(--md);margin-bottom:var(--sm);font-size:14px;line-height:20px;}
+  .sms .from{font-family:var(--mono);font-size:11px;color:var(--ink3);display:block;margin-bottom:2px;}
+  .wa{background:#1A2A22;border:1px solid var(--ink2);border-radius:14px 14px 4px 14px;
+      padding:var(--sm) var(--md);margin-bottom:var(--sm);font-size:14px;line-height:20px;}
+  .len{font-family:var(--mono);font-size:11px;color:var(--ink3);text-align:right;margin:-4px 0 var(--sm);}
+  .basis{display:inline-block;font-size:11px;line-height:15px;font-weight:600;border-radius:4px;
+         padding:1px 6px;margin-left:6px;vertical-align:middle;}
+  .b-tx{background:rgba(74,144,184,.16);color:var(--info);}
+  .b-follow{background:rgba(58,157,92,.16);color:var(--success);}
+  .b-mkt{background:rgba(224,138,43,.16);color:var(--warning);}
+  .rule{border-left:3px solid var(--ink2);padding-left:var(--md);color:var(--ink4);
+        font-size:14px;line-height:20px;margin:0 0 var(--md);}
+  /* scaffolds */
+  .scaf{background:var(--ink0);border:1px solid var(--ink2);border-radius:18px;
+        padding:var(--md);width:250px;max-width:100%;box-sizing:border-box;flex:0 0 auto;}
+  .slabel{font-family:var(--mono);font-size:11px;color:var(--ink3);margin:0 0 var(--sm);}
+  .z{border:1px dashed var(--ink3);border-radius:8px;padding:6px var(--sm);
+     font-family:var(--mono);font-size:10px;color:var(--ink4);margin-bottom:6px;
+     letter-spacing:.06em;}
+  .z.hi{border-color:var(--emberGold);color:var(--emberGold);}
+  .z.tall{padding:22px var(--sm);}
+  .z.mid{padding:14px var(--sm);}
+  .scnote{font-size:12px;line-height:17px;color:var(--ink3);margin-top:var(--sm);width:250px;}
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-15 / A-16 · MESSAGE TEMPLATES + SCREEN SCAFFOLDS · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>How ZUKA speaks off-screen, and how screens are born.</h1>
+<p class="lede">A-15 fixes the words ZUKA sends when the app is closed — every template carries its
+<b>consent basis</b> (transactional · follow-push · marketing) and its channel budget. A-16
+codifies the five scaffolds every existing screen already secretly follows, so future screens are
+assembled, not invented. Both are pure design law: no new backend surface, though delivery seams
+(FCM wiring, Africa's Talking SMS) stay named.</p>
+
+<h2>A-15 · Message templates — 10 messages, 3 channels, 3 consent bases</h2>
+<div class="rule">Laws (all channels): present-tense · real names + real times, never "an event" ·
+UGX integer format · one idea per message · no emojis in SMS (GSM-7 budget), at most the state
+emoji in push · <b>never marketing on a transactional or follow basis</b> — a channel earns only
+what its consent covers (DPPA; §4.6 severance) · every money message names what happened, never
+what to feel · SMS may carry the holder's own ticket code to their own registered number ONLY
+(it's their credential; never to third parties — §12.3 boundary).</div>
+<div class="cols">
+  <div class="col">
+    <h3>Push (FCM) <span class="basis b-follow">FOLLOW-PUSH</span> <span class="basis b-tx">TRANSACTIONAL</span></h3>
+    <div class="push"><div class="app"><span>ZUKA</span><span>now</span></div>
+      <div class="t">Sky Lounge just went live</div>
+      <div class="b">Bell Lager Rooftop Sessions — since 20:00, Nakasero.</div></div>
+    <p class="micro">P1 · went-live (follow-push basis; one per follow-target per go-live — no
+    re-ping storms). Tap → Detail (§4.2).</p>
+    <div class="push"><div class="app"><span>ZUKA</span><span>now</span></div>
+      <div class="t">Ticket secured ✓</div>
+      <div class="b">Acoustic Night at Ndere Centre, tonight 21:00. Your QR is in Tickets.</div></div>
+    <p class="micro">P2 · payment confirmed (transactional). Tap → §8 ticket.</p>
+    <div class="push"><div class="app"><span>ZUKA</span><span>now</span></div>
+      <div class="t">Still waiting on MTN</div>
+      <div class="b">Your Rooftop Sessions hold is safe. Approve the payment on your phone, or
+      open ZUKA to check.</div></div>
+    <p class="micro">P3 · payment still pending at T+5 min, once (transactional; no urgency
+    theater — states a fact and a next step).</p>
+    <div class="push"><div class="app"><span>ZUKA</span><span>now</span></div>
+      <div class="t">Doors in 2 hours</div>
+      <div class="b">Poetry &amp; Chill, Design Hub Kampala, 19:30. Your ticket is ready offline.</div></div>
+    <p class="micro">P4 · same-day reminder, once, holders only (transactional — it services the
+    ticket they hold; "ready offline" is the 2G promise doing marketing's job honestly).</p>
+  </div>
+  <div class="col">
+    <h3>SMS (Africa's Talking) <span class="basis b-tx">TRANSACTIONAL</span></h3>
+    <div class="sms"><span class="from">ZUKA</span>Ticket secured: Acoustic Night at Ndere Centre,
+    tonight 21:00. Code ZKA_TCK_9F3A. Works without internet - show code at gate. Paid UGX 20,000
+    via MTN.</div>
+    <div class="len">142 / 160 GSM-7</div>
+    <p class="micro">S1 · ticket confirm — THE offline fallback: the holder's own code to their
+    own number; the code line IS the no-smartphone admission path (§8.5 spoken fallback).</p>
+    <div class="sms"><span class="from">ZUKA</span>Your payment hold expired before MTN confirmed.
+    If money left your phone it is NOT lost - we reconcile it. Keep your MoMo SMS. Help: reply
+    HELP.</div>
+    <div class="len">148 / 160</div>
+    <p class="micro">S2 · expired-mid-payment (the R009-F2 honesty, in 160 chars).</p>
+    <div class="sms"><span class="from">ZUKA</span>Tonight in Kampala: 12 gatherings live or
+    starting. Free entry at 4. Reply TONIGHT for the list, STOP to opt out.</div>
+    <div class="len">118 / 160</div>
+    <p class="micro">S3 · "tonight by SMS" digest — the zero-smartphone discovery seam
+    <span class="basis b-mkt">MARKETING</span> — requires the marketing consent, carries STOP
+    every time; reply-TONIGHT keeps it pull-first.</p>
+  </div>
+  <div class="col">
+    <h3>WhatsApp (share-prefill) <span class="basis b-tx">PERSON-INITIATED</span></h3>
+    <div class="wa">I'm going to Acoustic Night at Ndere Centre tonight 21:00 — Ntinda. Free entry
+    before 8. Coming? zukaapp.com/g/9f3a</div>
+    <p class="micro">W1 · "I'm going" prefill (rides the person's own share tap — no consent
+    machinery; they are the sender). Link = zero-login Detail (proof 2 does the selling).</p>
+    <div class="wa">The rooftop just came alive — Bell Lager Rooftop Sessions, Sky Lounge
+    Nakasero, live now. zukaapp.com/g/8b21</div>
+    <p class="micro">W2 · live-now prefill (pairs with A-14's coral snippet; timestamp rides the
+    link's live state, honesty holds even if reshared late).</p>
+    <div class="wa">Gate crew: code GTE-4K7Q. PIN comes separately - call me. Anyone with both can
+    scan, share like keys.</div>
+    <p class="micro">W3 · gate hand-off prefill (§10.3) — deliberately splits code from PIN across
+    channels; the security copy travels with the key.</p>
+  </div>
+</div>
+
+<h2>A-16 · Screen scaffolds — the five skeletons every screen composes from</h2>
+<p class="caption" style="max-width:660px">Codified from what's BUILT (§1 Pulse, §6 Detail, §5
+forms, §4/§8 lists, the sheets) — a new screen picks a scaffold and fills zones; it never invents
+placement. Universal law: every scaffold reserves the ribbon slot (offline/stale/error) at content
+top, states render in-place (never a blank page), primary actions live in the thumb zone.</p>
+<div class="cols">
+  <div>
+    <div class="scaf">
+      <div class="slabel">S1 · FEED / LIST</div>
+      <div class="z">CHROME — title / lens · ⋯</div>
+      <div class="z">RIBBON SLOT (offline · stale)</div>
+      <div class="z">GROUP LABEL (optional)</div>
+      <div class="z mid">ROW / CARD ×N (Ember Edge)</div>
+      <div class="z mid">ROW / CARD</div>
+      <div class="z hi">TAB BAR (thumb zone)</div>
+    </div>
+    <p class="scnote">Pulse §1 · Tickets A-03 · Shelves §4 · map low-data A-10. Empty state
+    replaces rows in-place, direction-not-mood.</p>
+  </div>
+  <div>
+    <div class="scaf">
+      <div class="slabel">S2 · DETAIL</div>
+      <div class="z">BACK + ⋯ (share seam)</div>
+      <div class="z">RIBBON SLOT</div>
+      <div class="z tall">IDENTITY — title · state pill · facts</div>
+      <div class="z mid">BODY — description · tiers · map seam</div>
+      <div class="z hi">PRIMARY ACTION (sticky, thumb)</div>
+    </div>
+    <p class="scnote">Gathering §6 · Ticket §8 (QR is the identity zone). One primary action per
+    screen, gold; coral never on the button.</p>
+  </div>
+  <div>
+    <div class="scaf">
+      <div class="slabel">S3 · FORM</div>
+      <div class="z">TITLE + one context line</div>
+      <div class="z">FORMBANNER SLOT (§5 grammar)</div>
+      <div class="z tall">FIELD STACK (RPC param order)</div>
+      <div class="z">CONSENT ROWS (if personal data)</div>
+      <div class="z hi">PRIMARY (sticky; tap surfaces errors)</div>
+    </div>
+    <p class="scnote">Go-Live §5B · Sign-in/up §5A/D · enrichment A-08. Field order mirrors the
+    write; errors inline per field + banner for the call.</p>
+  </div>
+  <div>
+    <div class="scaf">
+      <div class="slabel">S4 · SHEET</div>
+      <div class="z">GRAB HANDLE</div>
+      <div class="z">TITLE + context line</div>
+      <div class="z mid">CONTENT (rows | fields | consent)</div>
+      <div class="z hi">ACTION ROW (≤2 buttons)</div>
+    </div>
+    <p class="scnote">AccountSheet §5D · ⋯ sheet §4 · pin card A-10 · push consent §4.6.
+    Background dims, never navigates; dismiss preserves the armed tap.</p>
+  </div>
+  <div>
+    <div class="scaf">
+      <div class="slabel">S5 · VERDICT / MOMENT</div>
+      <div class="z">CONTEXT (small)</div>
+      <div class="z tall">THE WORD — display type, state colour</div>
+      <div class="z">ONE LINE + ref (SpaceMono)</div>
+      <div class="z hi">NEXT ACTION (one)</div>
+    </div>
+    <p class="scnote">Scanner verdicts A-07 · confirmed moments §7/A-01 · "You're in" §8.
+    Full attention, one verdict at a time, night-legible.</p>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): 10 messages with
+per-message consent basis + channel budget (SMS counts shown ≤160 GSM-7) · voice laws applied
+(present-tense, specific, no hype, no guilt) · money messages state facts (UGX verbatim, "NOT
+lost" honesty) · SMS-code boundary law stated (holder's own number only) · marketing basis
+isolated to S3 with STOP · five scaffolds each traced to ≥2 built/reviewed screens · ribbon slot +
+in-place states + thumb-zone primary = universal scaffold law · no new backend surface (FCM +
+Africa's Talking = named delivery seams). </p>
+<p class="micro">ZUKA · docs/design/mockups/a-15-messages-scaffolds/messages-and-scaffolds.html
+(pair sheet — A-16 points here) · feeds ZUKA_DESIGN_LIVING_DOC.md §14 (the spec of record) ·
+counsel touchpoints: S3 marketing digest wording, FCM/AT processor disclosure</p>
+</main>

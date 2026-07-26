@@ -1,0 +1,218 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Go-Live Enrichment + Poster Templates — A-08 · A-09</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  .card{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+        padding:var(--md);margin-bottom:var(--md);position:relative;overflow:hidden;}
+  .spine{padding-left:calc(var(--md) + 6px);}
+  .spine::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                 background:var(--statusc,var(--success));}
+  .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       box-sizing:border-box;cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .btnrow{display:flex;gap:var(--sm);} .btnrow .btn{flex:1;width:auto;}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .bigcheck{width:56px;height:56px;border-radius:50%;background:rgba(58,157,92,.14);
+            display:flex;align-items:center;justify-content:center;color:var(--success);
+            font-size:28px;font-weight:700;margin:0 auto var(--sm);}
+  .field{background:var(--ink0);border:1px solid var(--ink2);border-radius:8px;
+         padding:12px var(--md);color:var(--ink4);font-size:16px;margin-bottom:var(--xs);
+         min-height:88px;}
+  .count{font-family:var(--mono);font-size:12px;color:var(--ink3);text-align:right;margin:0 0 var(--md);}
+  /* posters */
+  .posters{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .poster{width:240px;height:300px;border-radius:12px;border:1px solid var(--ink2);
+          padding:18px;box-sizing:border-box;display:flex;flex-direction:column;
+          position:relative;overflow:hidden;}
+  .p-type{font-family:var(--mono);font-size:10px;letter-spacing:.14em;opacity:.8;}
+  .p-title{font-family:var(--grotesk);font-weight:700;font-size:24px;line-height:27px;margin:auto 0 8px;}
+  .p-meta{font-size:12px;line-height:17px;opacity:.85;}
+  .p-price{font-family:var(--mono);font-size:12px;margin-top:8px;}
+  .p-z{font-family:var(--grotesk);font-weight:700;font-size:13px;letter-spacing:.06em;margin-top:12px;}
+  .wave{position:absolute;left:18px;right:18px;height:2px;}
+  .plabel{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:var(--sm) 0 0;width:240px;}
+  .story{width:170px;height:302px;border-radius:12px;border:1px solid var(--ink2);
+         padding:14px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden;}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  @media (prefers-reduced-motion: reduce){ .skel::after{animation:none;} .btn{transition:none;} }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-08 / A-09 · GO-LIVE ENRICHMENT + POSTER TEMPLATES · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>Sixty seconds to live. Then make it shine.</h1>
+<p class="lede">The iron rule of this pair: <b>the 60-second path gains zero required fields, zero
+new screens, zero taps.</b> Poster and description are enrichment that lives BEHIND go-live — on
+the live confirmation and the "Your gatherings" surface (§5-A2). A poster is <b>Media</b> (bytes,
+ADR-009 — never conflated with Memory) and today has no backend home; the description column
+exists but no write path. Both are named backend asks, not designed around.</p>
+
+<h2>A-08 · Enrichment behind go-live</h2>
+<div class="phones">
+
+  <div class="phone"><div class="phead">1 · THE 60s PATH — UNTOUCHED. Reference frame: §5B's stack exactly as built. Nothing added, nothing reordered.</div>
+    <div class="card">
+      <p style="margin:0 0 var(--sm);font-weight:600">Create gathering</p>
+      <p class="caption" style="margin:0">Title → Medium → Venue → Starts → Ends → Type →
+      [Create gathering]. Validation table §5.7 unchanged. Tiers stay in §5E.
+      <b>This frame exists to show what A-08 does NOT do.</b></p>
+    </div>
+    <div class="ribbon"><span class="rdot" style="background:var(--success)"></span>
+      <span>60s proof on-device evidence: 16s create, 8.1s go-live. Protected by design, verified
+      by the reality-checker before any ship.</span></div>
+  </div>
+
+  <div class="phone"><div class="phead">2 · LIVE CONFIRMATION + THE QUIET OFFER — enrichment appears only after the proof is banked. Skippable forever.</div>
+    <div class="card spine" style="--statusc:var(--success)">
+      <div class="bigcheck">✓</div>
+      <p style="margin:0;text-align:center;font-family:var(--grotesk);font-size:21px;font-weight:600">You're live.</p>
+      <p class="caption" style="margin:var(--xs) 0 0;text-align:center">Friday Kwota Night ·
+      Sky Lounge, Nakasero · tonight 22:00</p>
+    </div>
+    <div class="card">
+      <p style="margin:0 0 var(--xs);font-weight:600">Make it easier to find?</p>
+      <p class="caption" style="margin:0 0 var(--md)">Gatherings with a poster and a line of
+      description get picked more. Both take under a minute — both optional.</p>
+      <div class="btnrow">
+        <button class="btn btn-ghost">Add a poster</button>
+        <button class="btn btn-ghost">Say what it is</button>
+      </div>
+    </div>
+    <p class="micro">Same two affordances appear as quiet rows on "Your gatherings" (§5-A2) —
+    enrichment is reachable any time, never nagged twice (offer dismisses per gathering).</p>
+  </div>
+
+  <div class="phone"><div class="phead">3 · DESCRIPTION — one field, voice-guided, honest limits. Optional; saving never blocks anything.</div>
+    <div class="card">
+      <p style="margin:0 0 var(--xs);font-weight:600">Say what it is</p>
+      <div class="field">Live band from 10, rolex stand outside, free entry before 11. Come as
+      you are.</div>
+      <div class="count">92 / 400</div>
+      <p class="caption" style="margin:0 0 var(--md)">Write it like you'd tell a friend — what
+      happens, what it costs, why tonight. Specific beats clever.</p>
+      <button class="btn">Save description</button>
+    </div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>Offline?</b> Saved on this phone — it posts when you're back online. Your
+      gathering stays live either way.</span></div>
+    <p class="micro">Validation: length only (≤ 400). No tone-policing, no required fields.
+    Renders on Detail (§6) under the facts, body type, plain text only.</p>
+  </div>
+
+  <div class="phone"><div class="phead">4 · POSTER — two doors: a template (A-09, zero design skill) or their own photo (budget-honest).</div>
+    <div class="card">
+      <p style="margin:0 0 var(--xs);font-weight:600">Add a poster</p>
+      <div class="btnrow" style="margin-bottom:var(--md)">
+        <button class="btn">Use a template</button>
+        <button class="btn btn-ghost">Upload a photo</button>
+      </div>
+      <p class="caption" style="margin:0">Templates fill themselves from what you already told
+      us — pick one and it's done. Photos compress on this phone to ≤ 80 KB (PROPOSED budget)
+      before upload; a 3G crowd sees it fast or not at all.</p>
+    </div>
+    <div class="ribbon"><span class="rdot" style="background:var(--info)"></span>
+      <span><b>Compressing… 2.1 MB → 74 KB.</b> Looks the same at phone size — loads 28× faster
+      on 3G.</span></div>
+    <div class="ribbon"><span class="rdot" style="background:var(--error)"></span>
+      <span><b>That image didn't work.</b> Try another photo — or a template always works.</span></div>
+  </div>
+</div>
+
+<h2>A-09 · Poster templates — three named styles, auto-filled, one tap</h2>
+<p class="caption" style="max-width:660px">Filled entirely from existing gathering data (title ·
+type · venue · starts_at · tier price) — the organiser edits nothing. <b>No coral anywhere on a
+poster:</b> a poster advertises the future; coral means live NOW and the feed's pill owns it.
+Founder picks which templates ship (all three, or fewer).</p>
+<div class="posters">
+  <div>
+    <div class="poster" style="background:var(--midnight);color:var(--ink5);">
+      <span class="p-type" style="color:var(--emberGold)">LIVE MUSIC · FRIDAY</span>
+      <div class="p-title">Friday Kwota Night</div>
+      <div class="wave" style="background:var(--emberGold);bottom:96px"></div>
+      <div class="p-meta" style="margin-top:10px">Sky Lounge, Nakasero<br>Fri 18 Jul · 22:00</div>
+      <div class="p-price" style="color:var(--emberGold)">UGX 15,000 · at the door</div>
+      <div class="p-z">ZU<span style="color:var(--emberGold)">K</span>A</div>
+    </div>
+    <p class="plabel">T1 · "MIDNIGHT PULSE" — the city at 2am; gold carries the energy.</p>
+  </div>
+  <div>
+    <div class="poster" style="background:var(--emberGold);color:var(--midnight);">
+      <span class="p-type">LIVE MUSIC · FRIDAY</span>
+      <div class="p-title">Friday Kwota Night</div>
+      <div class="p-meta" style="font-weight:600">Sky Lounge, Nakasero<br>Fri 18 Jul · 22:00</div>
+      <div class="p-price" style="font-weight:700">UGX 15,000 · at the door</div>
+      <div class="p-z">ZU<span style="color:#FFFFFF">K</span>A</div>
+    </div>
+    <p class="plabel">T2 · "EMBER" — full gold; loudest in sunlight, printed on a pole, seen
+    from a boda.</p>
+  </div>
+  <div>
+    <div class="poster" style="background:var(--kampalaForest);color:var(--ink5);">
+      <span class="p-type" style="color:var(--emberGold)">LIVE MUSIC · FRIDAY</span>
+      <div class="p-title">Friday Kwota Night</div>
+      <div class="p-meta">Sky Lounge, Nakasero<br>Fri 18 Jul · 22:00</div>
+      <div class="p-price" style="color:var(--emberGold)">UGX 15,000 · at the door</div>
+      <div class="p-z">ZU<span style="color:var(--emberGold)">K</span>A</div>
+    </div>
+    <p class="plabel">T3 · "FOREST GATE" — calm-but-coming; the scheduled-state colour doing
+    brand work.</p>
+  </div>
+  <div>
+    <div class="story" style="background:var(--midnight);color:var(--ink5);">
+      <span class="p-type" style="color:var(--emberGold)">FRIDAY</span>
+      <div class="p-title" style="font-size:19px;line-height:22px">Friday Kwota Night</div>
+      <div class="p-meta">Sky Lounge, Nakasero<br>Fri 18 Jul · 22:00</div>
+      <div class="p-price" style="color:var(--emberGold)">UGX 15,000</div>
+      <div class="p-z" style="margin-top:auto">ZU<span style="color:var(--emberGold)">K</span>A</div>
+    </div>
+    <p class="plabel" style="width:170px">Every template renders both aspects: 4:5 (detail hero +
+    feed) and 9:16 story (WhatsApp/IG share).</p>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): 60s path provably
+untouched (frame 1 is the proof statement) · enrichment optional at every step, dismissible, never
+nagged twice · poster = Media (ADR-009 language kept) · description: length-only validation,
+posts-when-online offline state · image budget honesty on upload (compress on-device, size shown) ·
+no coral on any poster/template · money on posters = tier price verbatim (UGX integer) · templates
+auto-fill from existing fields only (title, type, venue, starts_at, price — no invented data) ·
+reduce-motion safe (shimmer only). Backend asks (not designed around): description write path
+(p_description on create OR enrich RPC — ADR-015-friendly), poster Media pipeline (Storage bucket +
+media reference + attach RPC), on-device template render + image compression deps (ADR-030 pile).</p>
+<p class="micro">ZUKA · docs/design/mockups/a-08-go-live-enrichment/enrichment-and-posters.html
+(one sheet for the pair — templates are picked from inside enrichment; A-09 points here) · feeds
+ZUKA_DESIGN_LIVING_DOC.md §5 (the spec of record)</p>
+</main>

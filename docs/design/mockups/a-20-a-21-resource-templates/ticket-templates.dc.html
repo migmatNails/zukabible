@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#0E0C0A;color:#F2EFEA;font-family:Inter,system-ui,sans-serif}
+a{color:#F5A623}a:hover{color:#F2EFEA}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#0E0C0A;padding:48px 32px;display:flex;flex-direction:column;gap:48px;align-items:flex-start">
+
+<section data-screen-label="A-21 header" style="display:flex;flex-direction:column;gap:16px;max-width:960px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">ZUKA · A-21 · TEMPLATE-DOCUMENT · EVOLVES A-18</div>
+  <div style="font:700 32px/38px 'Space Grotesk','Arial Narrow',sans-serif">Tier-specific ticket templates</div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px">
+    <span style="font:500 12px/16px 'Space Mono',monospace;border:1px solid #2A2724;padding:4px 8px;color:#A8A49E">STATUS: DRAFTED</span>
+    <span style="font:500 12px/16px 'Space Mono',monospace;border:1px solid #2A2724;padding:4px 8px;color:#A8A49E">2026-07-24</span>
+    <span style="font:500 12px/16px 'Space Mono',monospace;border:1px solid #2A2724;padding:4px 8px;color:#A8A49E">LANDSCAPE STUB · 5:2 · 360PX COLUMN</span>
+  </div>
+  <div style="border:1px solid #2A2724;background:#1A1815;padding:16px 24px;display:flex;flex-direction:column;gap:8px;max-width:640px">
+    <div style="font:600 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#F2EFEA">THE TWO LOAD-BEARING INVARIANTS</div>
+    <div style="display:flex;gap:8px;align-items:flex-start"><div style="width:8px;height:8px;background:#F2EFEA;margin-top:6px;flex-shrink:0"></div><div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">This is a preview, not a credential. The QR is a deep-link magnet — "Open in ZUKA" — and grants nothing. The real entry QR lives only in the Smart Bucket.</div></div>
+    <div style="display:flex;gap:8px;align-items:flex-start"><div style="width:8px;height:8px;background:#F2EFEA;margin-top:6px;flex-shrink:0"></div><div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Tier binding is enforced. Each design declares exactly one tier_class — set by platform administration as Ordinary · VIP · Table · Vendor — and the picker only offers the matching class. No coral anywhere.</div></div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 01 anatomy" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 01</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">Anatomy — every slot is locked</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import>
+    <div style="display:flex;flex-direction:column;gap:12px;max-width:460px">
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">tier_name</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">gathering_tier.name · Space Mono, letterspaced</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">admit</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">gathering_tier.seats_per_unit → "ADMIT 1" / "ADMITS 8"</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">title</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">gathering.title · one line, ellipsis</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">meta</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">starts_at · venue_name — one line, ellipsis; full venue on Detail</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">price</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">gathering_tier.price_ugx → "UGX 25,000" · Space Mono, tabular figures, never animates</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">serial</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">painter: preview_serial · deterministic, carries no entry value</span></div>
+      <div style="display:flex;gap:12px;align-items:baseline"><span style="font:400 14px/20px 'Space Mono',monospace;color:#F2EFEA;width:96px;flex-shrink:0">qr</span><span style="font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;border:1px solid #2A2724;padding:2px 6px">locked</span><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">painter: deeplink · labelled "Open in ZUKA" — never "scan to enter" · placeholder pattern, never a real QR</span></div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E;margin-top:8px;border-top:1px solid #2A2724;padding-top:12px">A ticket has no editable slots. The organiser chooses a design for the tier; the stub, tear-line and notches are structure; depth is one ambient shadow, a linear sheen and hairline security lines — all flat linear-gradient primitives, cheap on a 2GB device.</div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 02 four tier classes" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 02</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">The four tier classes — distinguishable at a glance</div>
+  <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E;max-width:640px">Squint test: Ordinary = quiet card · VIP = black-and-gold foil frame with die-cut corners · Table = forest ground with gold seat ticks · Vendor = hatched credential band. The luxury ladder is structure + material (sheen, foil, ghost type), all linear-gradient and typography tricks — cheap on a 2GB device, and nothing a cheaper tier can fake.</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">tier_class: ordinary</span>
+      <dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">The baseline. Clean, honest, unfussy — the other three are read against it.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">tier_class: vip</span>
+      <dc-import name="ZukaTicket" is-vip="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="per person" serial="PRV-0426" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Noir foil: gold double hairline, die-cut corners, ghost VIP letterform, foil-gradient wordmark, gold price. Vibrant luxury without coral — gold is ZUKA energy, not cliché wrap.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">tier_class: table · seats_per_unit = 8</span>
+      <dc-import name="ZukaTicket" is-table="{{ true }}" tier-name="TABLE" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 800,000" price-note="per table" serial="PRV-0427" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Forest ground for the communal tier. "Admits 8 people" is first-class: eight gold seat ticks, a ghost ×8 watermark, a gold ADMITS 8 chip, and the price stated per table.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">tier_class: vendor</span>
+      <dc-import name="ZukaTicket" is-vendor="{{ true }}" tier-name="VENDOR · FOOD" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 150,000" price-note="per stall" serial="PRV-0428" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">A working credential, not a party ticket: hatched safety strip + rotated VENDOR band over a utility card with a faint crosshatch. Distinct without borrowing VIP gold.</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 03 stub structure variants" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 03</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">Stub structure variants</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#F5A623">V1 · RIGHT STUB, DASHED TEAR + NOTCHES · RECOMMENDED</span>
+      <dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Reads "ticket" instantly at 5:2; the QR magnet is quarantined in the stub, away from the price.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">V2 · BOTTOM TEAR BAND</span>
+      <div style="width:320px;height:128px;box-sizing:border-box;display:flex;flex-direction:column;background:#1A1815;border:1px solid #2A2724;font-family:Inter,system-ui,sans-serif">
+        <div style="flex:1;min-width:0;padding:8px 16px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#A8A49E">ORDINARY</span><span style="margin-left:auto;font:500 12px/16px Inter,system-ui,sans-serif;color:#F2EFEA;border:1px solid #2A2724;padding:2px 6px">ADMIT 1</span></div>
+          <div style="margin-top:4px;font:600 18px/24px Inter,system-ui,sans-serif;color:#F2EFEA;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nyege Nyege Warm-Up</div>
+          <div style="margin-top:auto;display:flex;align-items:baseline;gap:8px;min-width:0"><span style="flex:1;min-width:0;font:400 14px/20px 'Space Mono',monospace;color:#A8A49E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Fri 25 Jul · 8:00pm · Alliance Française</span><span style="font:400 14px/20px 'Space Mono',monospace;font-variant-numeric:tabular-nums;color:#F2EFEA">UGX 25,000</span></div>
+        </div>
+        <div style="height:40px;flex-shrink:0;border-top:1px dashed #6B6863;position:relative;display:flex;align-items:center;gap:8px;padding:0 16px">
+          <div style="position:absolute;top:-6px;left:-7px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <div style="position:absolute;top:-6px;right:-7px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <svg width="24" height="24" viewBox="0 0 28 28" style="display:block"><rect width="28" height="28" fill="#F2EFEA"></rect><rect x="3" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="18" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="3" y="18" width="7" height="7" fill="#0E0C0A"></rect><rect x="14" y="14" width="3" height="3" fill="#0E0C0A"></rect></svg>
+          <span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E">Open in ZUKA</span>
+          <span style="margin-left:auto;font:400 12px/16px 'Space Mono',monospace;color:#A8A49E">PRV-0425</span>
+        </div>
+      </div>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Widest title measure; better when venue names run long. QR is smaller and less prominent.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">V3 · NOTCH-ONLY, SOLID HAIRLINE</span>
+      <div style="width:320px;height:128px;box-sizing:border-box;display:flex;background:#1A1815;border:1px solid #2A2724;font-family:Inter,system-ui,sans-serif;position:relative">
+        <div style="flex:1;min-width:0;padding:12px 16px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#A8A49E">ORDINARY</span><span style="margin-left:auto;font:500 12px/16px Inter,system-ui,sans-serif;color:#F2EFEA;border:1px solid #2A2724;padding:2px 6px">ADMIT 1</span></div>
+          <div style="margin-top:4px;font:600 18px/24px Inter,system-ui,sans-serif;color:#F2EFEA;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nyege Nyege Warm-Up</div>
+          <div style="margin-top:4px;font:400 14px/20px 'Space Mono',monospace;color:#A8A49E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya</div>
+          <div style="margin-top:auto;display:flex;align-items:baseline;gap:8px"><span style="font:400 14px/20px 'Space Mono',monospace;font-variant-numeric:tabular-nums;color:#F2EFEA">UGX 25,000</span><span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E">per person</span></div>
+        </div>
+        <div style="width:88px;flex-shrink:0;border-left:1px solid #2A2724;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px">
+          <div style="position:absolute;top:-7px;left:-6px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <div style="position:absolute;bottom:-7px;left:-6px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <svg width="40" height="40" viewBox="0 0 28 28" style="display:block"><rect width="28" height="28" fill="#F2EFEA"></rect><rect x="3" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="5" y="5" width="3" height="3" fill="#F2EFEA"></rect><rect x="18" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="20" y="5" width="3" height="3" fill="#F2EFEA"></rect><rect x="3" y="18" width="7" height="7" fill="#0E0C0A"></rect><rect x="5" y="20" width="3" height="3" fill="#F2EFEA"></rect><rect x="13" y="5" width="2" height="2" fill="#0E0C0A"></rect><rect x="16" y="12" width="2" height="2" fill="#0E0C0A"></rect><rect x="12" y="15" width="2" height="2" fill="#0E0C0A"></rect><rect x="19" y="19" width="2" height="2" fill="#0E0C0A"></rect></svg>
+          <span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E;text-align:center">Open in ZUKA</span>
+          <span style="font:400 12px/16px 'Space Mono',monospace;color:#A8A49E">PRV-0425</span>
+        </div>
+      </div>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Quietest: perforation implied by notches alone. For dense lists where dashes add noise.</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 04 vip treatment variants" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 04</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">VIP treatment variants</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#F5A623">V1 · NOIR FOIL · RECOMMENDED</span>
+      <dc-import name="ZukaTicket" is-vip="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="per person" serial="PRV-0426" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Gold hairlines, corner die-cuts, sheen and a ghost wordmark on near-black — premium as material, not decoration.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">V2 · FLAT SIGNATURE RULE</span>
+      <div style="width:320px;height:128px;box-sizing:border-box;display:flex;flex-direction:column;background:#0E0C0A;border:1px solid rgba(242,239,234,0.45);font-family:Inter,system-ui,sans-serif">
+        <div style="height:4px;flex-shrink:0;background:#F5A623"></div>
+        <div style="flex:1;min-width:0;display:flex">
+          <div style="flex:1;min-width:0;padding:8px 12px;display:flex;flex-direction:column">
+            <div style="display:flex;align-items:center;gap:8px"><span style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">VIP</span><span style="margin-left:auto;font:500 12px/16px Inter,system-ui,sans-serif;color:#F2EFEA;border:1px solid rgba(242,239,234,0.6);padding:2px 6px">ADMIT 1</span></div>
+            <div style="margin-top:4px;font:700 18px/24px Inter,system-ui,sans-serif;color:#F2EFEA;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nyege Nyege Warm-Up</div>
+            <div style="margin-top:4px;font:400 14px/20px 'Space Mono',monospace;color:#A8A49E;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya</div>
+            <div style="margin-top:auto;display:flex;align-items:baseline;gap:8px"><span style="font:400 14px/20px 'Space Mono',monospace;font-variant-numeric:tabular-nums;color:#F2EFEA">UGX 120,000</span><span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E">per person</span></div>
+          </div>
+          <div style="width:88px;flex-shrink:0;border-left:1px dashed rgba(242,239,234,0.55);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px">
+            <svg width="40" height="40" viewBox="0 0 28 28" style="display:block"><rect width="28" height="28" fill="#F2EFEA"></rect><rect x="3" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="5" y="5" width="3" height="3" fill="#F2EFEA"></rect><rect x="18" y="3" width="7" height="7" fill="#0E0C0A"></rect><rect x="20" y="5" width="3" height="3" fill="#F2EFEA"></rect><rect x="3" y="18" width="7" height="7" fill="#0E0C0A"></rect><rect x="5" y="20" width="3" height="3" fill="#F2EFEA"></rect><rect x="13" y="5" width="2" height="2" fill="#0E0C0A"></rect><rect x="16" y="12" width="2" height="2" fill="#0E0C0A"></rect><rect x="12" y="15" width="2" height="2" fill="#0E0C0A"></rect><rect x="19" y="19" width="2" height="2" fill="#0E0C0A"></rect></svg>
+            <span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E;text-align:center">Open in ZUKA</span>
+            <span style="font:400 12px/16px 'Space Mono',monospace;color:#A8A49E">PRV-0426</span>
+          </div>
+        </div>
+      </div>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">One 4px gold rule + gold wordmark on flat black — the budget render: no sheen, no clipper, same identity at lower frame cost.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">V3 · INVERTED</span>
+      <div style="width:320px;height:128px;box-sizing:border-box;display:flex;background:#F2EFEA;border:1px solid #F2EFEA;font-family:Inter,system-ui,sans-serif">
+        <div style="flex:1;min-width:0;padding:12px 16px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#0E0C0A">VIP</span><span style="margin-left:auto;font:500 12px/16px Inter,system-ui,sans-serif;color:#0E0C0A;border:1px solid #6B6863;padding:2px 6px">ADMIT 1</span></div>
+          <div style="margin-top:4px;font:700 18px/24px Inter,system-ui,sans-serif;color:#0E0C0A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Nyege Nyege Warm-Up</div>
+          <div style="margin-top:4px;font:400 14px/20px 'Space Mono',monospace;color:#6B6863;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya</div>
+          <div style="margin-top:auto;display:flex;align-items:baseline;gap:8px"><span style="font:400 14px/20px 'Space Mono',monospace;font-variant-numeric:tabular-nums;color:#0E0C0A">UGX 120,000</span><span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#6B6863">per person</span></div>
+        </div>
+        <div style="width:88px;flex-shrink:0;border-left:1px dashed #6B6863;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px">
+          <div style="position:absolute;top:-7px;left:-6px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <div style="position:absolute;bottom:-7px;left:-6px;width:12px;height:12px;border-radius:50%;background:#0E0C0A"></div>
+          <svg width="40" height="40" viewBox="0 0 28 28" style="display:block"><rect width="28" height="28" fill="#0E0C0A"></rect><rect x="3" y="3" width="7" height="7" fill="#F2EFEA"></rect><rect x="5" y="5" width="3" height="3" fill="#0E0C0A"></rect><rect x="18" y="3" width="7" height="7" fill="#F2EFEA"></rect><rect x="20" y="5" width="3" height="3" fill="#0E0C0A"></rect><rect x="3" y="18" width="7" height="7" fill="#F2EFEA"></rect><rect x="5" y="20" width="3" height="3" fill="#0E0C0A"></rect><rect x="13" y="5" width="2" height="2" fill="#F2EFEA"></rect><rect x="16" y="12" width="2" height="2" fill="#F2EFEA"></rect><rect x="12" y="15" width="2" height="2" fill="#F2EFEA"></rect><rect x="19" y="19" width="2" height="2" fill="#F2EFEA"></rect></svg>
+          <span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#6B6863;text-align:center">Open in ZUKA</span>
+          <span style="font:400 12px/16px 'Space Mono',monospace;color:#6B6863">PRV-0426</span>
+        </div>
+      </div>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">The brightest object in a dark list — maximum glance-contrast, at the cost of the 2am mood.</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 05 required states" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 05</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">Required states</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">LOADING · STATIC SKELETON</span>
+      <dc-import name="ZukaTicket" is-skeleton="{{ true }}" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">No shimmer. Money surfaces never animate — the price appears instantly or not at all.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">SOLD OUT</span>
+      <dc-import name="ZukaTicket" is-vip="{{ true }}" sold-out="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="no units left" serial="PRV-0426" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">capacity = 0 → a plain SOLD OUT chip; price stays visible and honest. Neutral inks — sold out is a fact, not a warning.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">EMPTY · NO TIERS YET</span>
+      <div style="width:320px;height:128px;box-sizing:border-box;border:1px dashed #2A2724;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:16px;text-align:center">
+        <span style="font:600 16px/24px Inter,system-ui,sans-serif;color:#F2EFEA">No tiers yet</span>
+        <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">The buy sheet stays hidden until the organiser adds a tier. Nothing to sell, nothing to dress.</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">OFFLINE</span><span style="display:inline-flex;align-items:center;gap:6px;font:500 12px/16px 'Space Mono',monospace;color:#F2EFEA;border:1px solid #4A90B8;padding:2px 8px"><span style="width:8px;height:8px;background:#4A90B8"></span>CACHED RENDER</span></div>
+      <dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Renders fully from cached tier data — template, price and serial included. Buying waits for a connection; the preview doesn't.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">ERROR · TEMPLATE SPEC FAILED</span><span style="display:inline-flex;align-items:center;gap:6px;font:500 12px/16px 'Space Mono',monospace;color:#F2EFEA;border:1px solid #D64545;padding:2px 8px"><span style="width:8px;height:8px;background:#D64545"></span>PLAIN FALLBACK</span></div>
+      <div style="width:320px;height:128px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:4px;background:#1A1815;border:1px solid #2A2724;padding:12px 16px">
+        <span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#A8A49E">ORDINARY</span>
+        <span style="font:600 18px/24px Inter,system-ui,sans-serif;color:#F2EFEA">Nyege Nyege Warm-Up</span>
+        <span style="font:400 14px/20px 'Space Mono',monospace;font-variant-numeric:tabular-nums;color:#F2EFEA">UGX 25,000 <span style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E">per person</span></span>
+      </div>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">If the design spec can't load, the tier falls back to this plain row — name, title, price. The purchase path never breaks for decoration.</span>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;width:320px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font:500 12px/16px 'Space Mono',monospace;letter-spacing:1px;color:#A8A49E">SUCCESS · PURCHASED</span><span style="display:inline-flex;align-items:center;gap:6px;font:500 12px/16px 'Space Mono',monospace;color:#F2EFEA;border:1px solid #3A9D5C;padding:2px 8px"><span style="width:8px;height:8px;background:#3A9D5C"></span>INSTANT · NO ANIMATION</span></div>
+      <dc-import name="ZukaTicket" is-vip="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="per person" serial="PRV-0426" hint-size="320px,128px"></dc-import>
+      <span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">"Ticket secured — your entry QR is in your Bucket." The preview never becomes the credential; success copy points to the Bucket.</span>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 06 buy sheet stacked list" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 06</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">The buy moment — three tiers stacked at 360×800</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <div style="width:360px;height:800px;box-sizing:border-box;border:1px solid #2A2724;border-radius:24px;overflow:hidden;background:#0E0C0A;display:flex;flex-direction:column;flex-shrink:0">
+      <div style="display:flex;justify-content:space-between;padding:8px 16px;font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;flex-shrink:0"><span>9:41</span><span>3G · 82%</span></div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 16px;flex-shrink:0"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#F2EFEA" stroke-width="1.5"></path></svg><span style="font:600 16px/24px Inter,system-ui,sans-serif;color:#F2EFEA">Nyege Nyege Warm-Up</span></div>
+      <div style="padding:8px 16px 0;font:600 18px/24px Inter,system-ui,sans-serif;color:#F2EFEA;flex-shrink:0">Choose your ticket</div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:16px;align-items:center">
+        <div style="border:2px solid #F5A623;padding:4px"><dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import></div>
+        <dc-import name="ZukaTicket" is-vip="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="per person" serial="PRV-0426" hint-size="320px,128px"></dc-import>
+        <dc-import name="ZukaTicket" is-table="{{ true }}" tier-name="TABLE" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 800,000" price-note="per table" serial="PRV-0427" hint-size="320px,128px"></dc-import>
+      </div>
+      <div style="margin-top:auto;padding:16px;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;justify-content:center;height:48px;background:#F5A623;color:#0E0C0A;font:600 16px/24px Inter,system-ui,sans-serif">Buy · UGX 25,000</div>
+        <div style="font:500 12px/16px Inter,system-ui,sans-serif;color:#A8A49E;text-align:center">Your entry QR arrives in your Bucket after purchase</div>
+      </div>
+    </div>
+    <div style="border:1px solid #2A2724;background:#1A1815;padding:16px 24px;display:flex;flex-direction:column;gap:8px;max-width:420px">
+      <div style="font:600 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#F2EFEA">3-TAP TICKET — NOT REGRESSED</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">The ticket preview IS the tier row in the buy sheet — tap a tier, tap Buy. It adds zero taps to the purchase path.</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Selection = 2px emberGold outline (primary-action colour). The three classes stay tellable-apart even inside a fast scroll: quiet card · gold foil frame · forest tick-band.</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Tap targets: each stub is 128px tall; the Buy bar is 48px. Nothing interactive under 44px.</div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 · 07 organiser picker" style="display:flex;flex-direction:column;gap:16px">
+  <div style="font:700 12px/16px 'Space Mono',monospace;letter-spacing:2px;color:#F5A623">A-21 · 07</div>
+  <div style="font:600 21px/28px 'Space Grotesk','Arial Narrow',sans-serif">Organiser picker — class mismatch blocked, honestly</div>
+  <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start">
+    <div style="width:360px;height:800px;box-sizing:border-box;border:1px solid #2A2724;border-radius:24px;overflow:hidden;background:#0E0C0A;display:flex;flex-direction:column;flex-shrink:0">
+      <div style="display:flex;justify-content:space-between;padding:8px 16px;font:500 12px/16px 'Space Mono',monospace;color:#A8A49E;flex-shrink:0"><span>9:41</span><span>3G · 82%</span></div>
+      <div style="display:flex;align-items:center;gap:8px;padding:8px 16px"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#F2EFEA" stroke-width="1.5"></path></svg><span style="font:600 16px/24px Inter,system-ui,sans-serif;color:#F2EFEA">Ticket design</span></div>
+      <div style="padding:4px 16px 0"><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Choosing for </span><span style="font:600 14px/20px Inter,system-ui,sans-serif;color:#F2EFEA">VIP · UGX 120,000 · 1 seat</span></div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:8px;align-items:center">
+        <div style="border:2px solid #F5A623;padding:4px"><dc-import name="ZukaTicket" is-vip="{{ true }}" tier-name="VIP" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 120,000" price-note="per person" serial="PRV-0426" hint-size="320px,128px"></dc-import></div>
+        <div style="display:flex;align-items:center;justify-content:center;height:44px;background:#F5A623;color:#0E0C0A;font:600 16px/24px Inter,system-ui,sans-serif;width:328px">Use this design</div>
+      </div>
+      <div style="padding:8px 16px 0;font:500 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#A8A49E">LOCKED TO THEIR OWN TIERS</div>
+      <div style="padding:8px 16px 16px;display:flex;flex-direction:column;gap:12px;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="opacity:0.45"><dc-import name="ZukaTicket" is-ordinary="{{ true }}" tier-name="ORDINARY" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 25,000" price-note="per person" serial="PRV-0425" hint-size="320px,128px"></dc-import></div>
+          <div style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="6" stroke="#A8A49E" stroke-width="1.5"></rect><path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="#A8A49E" stroke-width="1.5"></path></svg><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Ordinary designs are for Ordinary tiers</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <div style="opacity:0.45"><dc-import name="ZukaTicket" is-table="{{ true }}" tier-name="TABLE" title="Nyege Nyege Warm-Up" meta="Fri 25 Jul · 8:00pm · Alliance Française, Kamwokya" price="UGX 800,000" price-note="per table" serial="PRV-0427" hint-size="320px,128px"></dc-import></div>
+          <div style="display:flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="3" y="7" width="10" height="6" stroke="#A8A49E" stroke-width="1.5"></rect><path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="#A8A49E" stroke-width="1.5"></path></svg><span style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Table designs are for tiers that seat more than one</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid #2A2724;background:#1A1815;padding:16px 24px;display:flex;flex-direction:column;gap:8px;max-width:460px">
+      <div style="font:600 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#F2EFEA">BLOCKED-STATE COPY — ALL FOUR CLASSES</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">ordinary → "Ordinary designs are for Ordinary tiers"</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">vip → "VIP designs are for VIP tiers"</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">table → "Table designs are for tiers that seat more than one"</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">vendor → "Vendor designs are for vendor tiers"</div>
+      <div style="margin-top:8px;border-top:1px solid #2A2724;padding-top:12px;font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Rules: state which class owns the design, never why the Person's tier is lesser. No upsell, no nag, no "upgrade to unlock". The binding is enforced server-side (same failure class as the vendor category-lock); the picker simply never offers a mismatch as selectable. Locked rows are non-interactive previews at 45% opacity with a lock glyph — one icon family, inline SVG, no emoji.</div>
+      <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">tier_class is set by platform administration per tier — Ordinary · VIP · Table · Vendor — so organisers never self-assign a class.</div>
+    </div>
+  </div>
+</section>
+
+<section data-screen-label="A-21 footer" style="border:1px solid #2A2724;background:#1A1815;padding:16px 24px;display:flex;flex-direction:column;gap:8px;max-width:640px">
+  <div style="font:600 12px/16px 'Space Mono',monospace;letter-spacing:1.5px;color:#F2EFEA">DATA + TERMINOLOGY FOOTER</div>
+  <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Fields used are exactly §5: gathering.title · starts_at · venue_name · tier.name · price_ugx (integer minor units → "UGX n,nnn", no decimals) · seats_per_unit · capacity. Table price is shown per table. Serial and QR are painters, not data. Gathering, never Event; Person, never User.</div>
+  <div style="font:400 14px/20px Inter,system-ui,sans-serif;color:#A8A49E">Machine-readable specs for all four classes: ZUKA_LIVING_DOC_APPEND.md · §A-21.7.</div>
+</section>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA My Tickets — A-03</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  .h-screen{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;margin:0 0 var(--md);}
+  .group{font-size:12px;line-height:16px;font-weight:500;letter-spacing:.08em;color:var(--ink3);
+         margin:var(--md) 0 var(--sm);}
+  /* ticket rows — Ember Edge compact */
+  .row{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+       padding:var(--sm) var(--md) var(--sm) calc(var(--md) + 6px);
+       position:relative;overflow:hidden;margin-bottom:var(--sm);}
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+               background:var(--statusc,var(--success));}
+  .r-top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sm);}
+  .r-title{font-size:16px;line-height:24px;font-weight:600;}
+  .r-time{font-family:var(--mono);font-size:14px;color:var(--ink4);flex:0 0 auto;}
+  .r-state{display:flex;justify-content:space-between;align-items:center;gap:var(--sm);margin-top:2px;}
+  .r-venue{font-size:14px;line-height:20px;color:var(--ink3);}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+        font-weight:600;padding:2px 10px;border-radius:999px;flex:0 0 auto;}
+  .c-issued{background:rgba(58,157,92,.14);color:var(--success);}
+  .c-pending{background:rgba(245,166,35,.14);color:var(--emberGold);}
+  .c-in{background:rgba(58,157,92,.14);color:var(--success);}
+  .c-expired{background:rgba(214,69,69,.14);color:var(--error);}
+  .pill-live{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+             font-weight:500;padding:2px 10px;border-radius:999px;
+             background:rgba(255,77,77,.14);color:var(--liveCoral);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--liveCoral);}
+  .pulse{animation:pulse 700ms cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.5);opacity:.55}}
+  .dim{opacity:.5;}
+  /* tab bar */
+  .tabbar{display:flex;border-top:1px solid var(--ink2);margin:var(--md) calc(-1 * var(--md)) 0;
+          padding:10px var(--md) 4px;}
+  .tab{flex:1;text-align:center;font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);
+       position:relative;}
+  .tab.on{color:var(--ink5);}
+  .badge{position:absolute;top:-3px;right:28%;width:8px;height:8px;border-radius:50%;}
+  .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       box-sizing:border-box;cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  .empty{display:flex;flex-direction:column;gap:var(--sm);align-items:flex-start;
+         padding:var(--xl) 0;}
+  @media (prefers-reduced-motion: reduce){
+    .pulse,.skel::after{animation:none;} .btn{transition:none;}
+  }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-03 · MY TICKETS — THE LIST · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>Every ticket you hold, told honestly.</h1>
+<p class="lede">§8.3's list grammar rendered: upcoming first with tonight pinned, each row =
+gathering + start + state; PENDING rows resume the PendingMeter on tap. Rows are Ember Edge
+compact — the spine carries the <b>ticket state</b>, coral appears only as the gathering's own
+live pill. Every field maps to a <span class="data">my_tickets()</span> column. The Tickets tab
+stays quiet and un-badged until a true state exists (§8.2 founder ruling).</p>
+
+<div class="phones">
+
+  <!-- 1 default -->
+  <div class="phone"><div class="phead">1 · DEFAULT — tonight pinned, upcoming next, earlier dimmed below. One thumb-tap from the tab to any QR.</div>
+    <div class="h-screen">Tickets</div>
+    <div class="group">TONIGHT</div>
+    <div class="row" style="--statusc:var(--success)">
+      <div class="r-top"><span class="r-title">Acoustic Night at Ndere Centre</span><span class="r-time">21:00</span></div>
+      <div class="r-state"><span class="r-venue">Ndere Cultural Centre, Ntinda</span>
+        <span class="pill-live"><span class="dot pulse"></span>LIVE</span></div>
+    </div>
+    <div class="row" style="--statusc:var(--emberGold)">
+      <div class="r-top"><span class="r-title">Bell Lager Rooftop Sessions</span><span class="r-time">23:00</span></div>
+      <div class="r-state"><span class="r-venue">Sky Lounge, Nakasero</span>
+        <span class="chip c-pending">Waiting for payment</span></div>
+    </div>
+    <div class="group">UPCOMING</div>
+    <div class="row" style="--statusc:var(--success)">
+      <div class="r-top"><span class="r-title">Poetry &amp; Chill</span><span class="r-time">Sat 19:30</span></div>
+      <div class="r-state"><span class="r-venue">Design Hub Kampala, Bugolobi</span>
+        <span class="chip c-issued">You're going</span></div>
+    </div>
+    <div class="group">EARLIER</div>
+    <div class="row dim" style="--statusc:var(--success)">
+      <div class="r-top"><span class="r-title">Nyege Nyege Warm-Up</span><span class="r-time">11 Jul</span></div>
+      <div class="r-state"><span class="r-venue">The Alchemist, Kololo</span>
+        <span class="chip c-in">You were in</span></div>
+    </div>
+    <div class="row dim" style="--statusc:var(--error)">
+      <div class="r-top"><span class="r-title">Kampala Comedy Night</span><span class="r-time">9 Jul</span></div>
+      <div class="r-state"><span class="r-venue">Theatre Labonita</span>
+        <span class="chip c-expired">Expired</span></div>
+    </div>
+    <div class="tabbar">
+      <span class="tab">Pulse</span>
+      <span class="tab on">Tickets</span>
+    </div>
+  </div>
+
+  <!-- 2 tab badges -->
+  <div class="phone"><div class="phead">2 · THE QUIET TAB (§8.2 ruling) — un-badged until a true state exists. Three chrome states.</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--ink3)"></span>
+      <span><b>No true state:</b> the tab sits neutral — no badge, no count, no nagging.</span></div>
+    <div class="tabbar" style="margin-top:0">
+      <span class="tab">Pulse</span><span class="tab">Tickets</span>
+    </div>
+    <div class="ribbon" style="margin-top:var(--lg)"><span class="rdot" style="background:var(--emberGold)"></span>
+      <span><b>PENDING exists:</b> gold dot — money is in flight somewhere.</span></div>
+    <div class="tabbar" style="margin-top:0">
+      <span class="tab">Pulse</span><span class="tab">Tickets<span class="badge" style="background:var(--emberGold)"></span></span>
+    </div>
+    <div class="ribbon" style="margin-top:var(--lg)"><span class="rdot" style="background:var(--liveCoral)"></span>
+      <span><b>A held ticket's gathering is live NOW:</b> the only coral in chrome — it means
+      "your night has started", nothing else.</span></div>
+    <div class="tabbar" style="margin-top:0">
+      <span class="tab">Pulse</span><span class="tab">Tickets<span class="badge" style="background:var(--liveCoral)"></span></span>
+    </div>
+    <p class="micro" style="margin-top:var(--lg)">Priority when both exist: coral wins (the night
+    beats the paperwork); the gold state is still one tap away inside.</p>
+  </div>
+
+  <!-- 3 empty -->
+  <div class="phone"><div class="phead">3 · EMPTY — direction, not mood; the door back to discovery (zero-login proof untouched).</div>
+    <div class="h-screen">Tickets</div>
+    <div class="empty">
+      <p style="margin:0;font-size:18px;font-weight:600">No tickets yet.</p>
+      <p class="caption" style="margin:0">12 gatherings are on across Kampala tonight — your first
+      ticket is three taps away.</p>
+      <button class="btn btn-ghost">See what's on</button>
+    </div>
+    <div class="tabbar"><span class="tab">Pulse</span><span class="tab on">Tickets</span></div>
+  </div>
+
+  <!-- 4 offline / loading / error -->
+  <div class="phone"><div class="phead">4 · OFFLINE · LOADING · ERROR — the list is cacheable; the QRs behind it work with no signal.</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>You're offline.</b> Showing your tickets as of <span class="data">20:12</span> —
+      every saved QR still works at the gate.</span></div>
+    <div class="row" style="--statusc:var(--success)">
+      <div class="r-top"><span class="r-title">Acoustic Night at Ndere Centre</span><span class="r-time">21:00</span></div>
+      <div class="r-state"><span class="r-venue">Ndere Cultural Centre, Ntinda</span>
+        <span class="chip c-issued">You're going</span></div>
+    </div>
+    <div class="group" style="margin-top:var(--lg)">LOADING</div>
+    <div class="row" style="--statusc:var(--ink2)">
+      <div class="skel" style="width:75%;height:16px;margin-bottom:8px"></div>
+      <div class="skel" style="width:50%;height:13px"></div>
+    </div>
+    <div class="group" style="margin-top:var(--lg)">ERROR</div>
+    <div class="ribbon" style="margin-bottom:var(--sm)"><span class="rdot" style="background:var(--error)"></span>
+      <span><b>That didn't load.</b> Your saved tickets are safe — showing the last list we
+      had.</span></div>
+    <div class="btnrow" style="display:flex;gap:var(--sm)"><button class="btn" style="flex:1">Try again</button></div>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): default · tab-chrome
+trio · empty · offline · loading · error rendered · every row field = a
+<span class="data">my_tickets()</span> column (title, venue, starts_at, status, is_live) · tonight
+pinned, upcoming next, earlier dimmed (§8.3) · PENDING row resumes PendingMeter on tap (§8.3) ·
+tab un-badged without true state; gold = PENDING, coral only for live-now, coral wins (§8.2) ·
+trust never numeric · no counts on the tab, no urgency · Ember Edge compact rows, spine = ticket
+state (A-00/A-02 binding) · reduce-motion freezes pulse + shimmer.</p>
+<p class="micro">ZUKA · docs/design/mockups/a-03-my-tickets-list/my-tickets-list.html · feeds
+ZUKA_DESIGN_LIVING_DOC.md §8 (the spec of record)</p>
+</main>

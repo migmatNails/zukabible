@@ -1,0 +1,164 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Documents — A-18 · A-19</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724; --ink3:#6B6863;
+    --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .cols{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  /* light print documents */
+  .doc{width:420px;max-width:100%;background:#FFFFFF;color:#1A1815;border-radius:6px;
+       padding:28px;box-sizing:border-box;font-size:13px;line-height:19px;
+       box-shadow:0 8px 40px rgba(0,0,0,.5);}
+  .dhead{display:flex;justify-content:space-between;align-items:baseline;
+         border-bottom:2px solid #0E0C0A;padding-bottom:10px;margin-bottom:14px;}
+  .dz{font-family:var(--grotesk);font-weight:700;font-size:18px;color:#0E0C0A;}
+  .dz span{color:#C77F0E;}
+  .dtitle{font-family:var(--mono);font-size:11px;color:#6B6863;letter-spacing:.1em;}
+  .doc h3{font-family:var(--grotesk);font-size:16px;line-height:22px;margin:0 0 2px;color:#0E0C0A;}
+  .dmeta{color:#6B6863;margin:0 0 12px;}
+  .doc table{width:100%;border-collapse:collapse;margin:0 0 12px;}
+  .doc td,.doc th{padding:6px 0;border-bottom:1px solid #E8E4DD;vertical-align:top;text-align:left;}
+  .doc th{font-size:11px;color:#6B6863;font-weight:600;letter-spacing:.06em;}
+  .doc td.k{color:#6B6863;width:42%;}
+  .doc td.v{text-align:right;font-family:var(--mono);font-size:12px;color:#1A1815;}
+  .doc td.n{text-align:right;font-family:var(--mono);font-size:12px;}
+  .dtotal td{border-bottom:none;font-weight:700;font-size:15px;color:#0E0C0A;}
+  .dtotal td.n{font-family:var(--grotesk);font-size:17px;}
+  .dfoot{border-top:1px solid #E8E4DD;padding-top:10px;color:#6B6863;font-size:11px;line-height:16px;}
+  .qrbox{display:flex;flex-direction:column;align-items:center;margin:14px 0;}
+  canvas.qr{width:190px;height:190px;image-rendering:pixelated;}
+  .ref{font-family:var(--mono);font-size:13px;color:#0E0C0A;margin-top:6px;letter-spacing:.06em;}
+  .cashline{background:#FBF3E2;border:1px solid #E8D5A8;border-radius:6px;
+            padding:8px 12px;font-size:12px;line-height:17px;color:#7A5A12;margin:0 0 12px;}
+  .declare{background:#EDF5EF;border:1px solid #C9E0CF;border-radius:6px;
+           padding:8px 12px;font-size:12px;line-height:17px;color:#265C38;margin:0 0 12px;}
+  .reserve{color:#A8A49E;font-style:italic;}
+  .note{max-width:300px;}
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-18 / A-19 · DOCUMENTS — PRINTABLE TICKET · VENDOR STATEMENT · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>Paper that tells the truth.</h1>
+<p class="lede">The last two artifacts, both on A-06's ratified light-print surface. Each exists
+around one load-bearing line: the printed ticket says <b>"works once — treat it like cash"</b>
+(it IS the credential, deliberately exported by its holder); the vendor statement says <b>"ZUKA
+never holds your money"</b> (the NPS-posture declaration, printed on every copy).</p>
+
+<h2>A-18 · Printable ticket — the credential, on paper</h2>
+<div class="cols">
+  <div class="doc">
+    <div class="dhead"><span class="dz">ZU<span>K</span>A</span>
+      <span class="dtitle">ENTRY TICKET</span></div>
+    <h3>Acoustic Night at Ndere Centre</h3>
+    <p class="dmeta">Fri 18 Jul 2026 · doors 21:00 · Ndere Cultural Centre, Ntinda, Kampala<br>
+    General admission × 1</p>
+    <div class="qrbox">
+      <canvas class="qr" width="29" height="29" data-seed="7"></canvas>
+      <div class="ref">ZKA_TCK_9F3A</div>
+    </div>
+    <div class="cashline"><b>Treat this like cash.</b> Anyone holding it can enter — once. After
+    the gate scans it, it's used; a photocopy won't get a second person in. If you lose it, open
+    your ZUKA app: your ticket there always works.</div>
+    <table>
+      <tr><td class="k">No scanner at the gate?</td><td class="v">read out: ZKA_TCK_9F3A</td></tr>
+      <tr><td class="k">Printed</td><td class="v">18 Jul 2026 · 18:30</td></tr>
+    </table>
+    <div class="dfoot">Printed from ZUKA · zukaapp.com. The QR and code above ARE the admission
+    credential — this page is deliberately exported by the ticket holder. The gate's scanner is
+    the only judge of validity; if the ticket was refunded or already used, this paper is void.
+    No name appears here by design.</div>
+  </div>
+  <div class="note">
+    <p class="caption"><b>Why this exists:</b> a borrowed phone, a dead battery, an elder without
+    a smartphone — the SMS code (A-15 · S1) covers voice, this covers paper. Holder-initiated
+    from §8's ticket ([Save PDF], secondary) — never auto-generated, never emailed unasked.</p>
+    <p class="caption"><b>Reconciliation with §12.3 (recorded):</b> the masking law governs
+    receipts and shares — documents <i>about</i> a ticket. A-18 is the ticket. The holder
+    exporting their own credential is the same act as showing their screen at the gate; the
+    protections are token rotation (used = void) + the scanner's authority, not masking. The
+    cash-line makes the risk transfer explicit.</p>
+    <p class="caption"><b>No name by design:</b> the scanner checks the token, not identity
+    (M0); a printed name would add DPPA surface for zero admission value.</p>
+  </div>
+</div>
+
+<h2>A-19 · Vendor statement — design-ahead for §9B Phase-2, the declaration already law</h2>
+<div class="cols">
+  <div class="doc">
+    <div class="dhead"><span class="dz">ZU<span>K</span>A</span>
+      <span class="dtitle">VENDOR STATEMENT</span></div>
+    <h3>Kwota Kitchen (vendor)</h3>
+    <p class="dmeta">Statement period: 11 – 18 Jul 2026 · Gathering: Bell Lager Rooftop
+    Sessions · Sky Lounge, Nakasero</p>
+    <div class="declare"><b>Your money never passed through ZUKA.</b> Every order below was paid
+    by the buyer directly to your MTN MoMo (··· 4821) via Flutterwave. This statement is a
+    record for your books — not a payout, not a settlement. There is nothing to "release":
+    you already have it.</div>
+    <table>
+      <tr><th>Order</th><th>Item</th><th style="text-align:right">Paid direct</th></tr>
+      <tr><td class="data" style="font-size:11px">FLW-TX-91C4</td><td>Rolex + soda × 2</td><td class="n">UGX 18,000</td></tr>
+      <tr><td class="data" style="font-size:11px">FLW-TX-93A0</td><td>Chips platter</td><td class="n">UGX 25,000</td></tr>
+      <tr><td class="data" style="font-size:11px">FLW-TX-9788</td><td>Rolex × 1</td><td class="n">UGX 8,000</td></tr>
+      <tr class="dtotal"><td colspan="2">Paid direct to you (3 orders)</td><td class="n">UGX 51,000</td></tr>
+      <tr><td colspan="2" class="reserve">ZUKA platform fee — row reserved; fee mechanics land
+      with §9B and its own agreement</td><td class="n reserve">—</td></tr>
+    </table>
+    <div class="dfoot">Generated by ZUKA · zukaapp.com — payment processing by Flutterwave; order
+    money is vendor-direct. Figures are Flutterwave-confirmed transactions only. Questions?
+    WhatsApp ZUKA support with a transaction reference.</div>
+  </div>
+  <div class="note">
+    <p class="caption"><b>Scope honesty (design-ahead):</b> no vendor order flow is live —
+    orders/fulfilment are Vendor Marketplace §9B Phase-2. This template fixes the document's
+    SHAPE and its load-bearing declaration now, so when orders exist the paper is already
+    lawful. Nothing here invents money semantics: rows = Flutterwave-confirmed transactions,
+    verbatim; the fee row is <i>reserved, empty, and says why</i>.</p>
+    <p class="caption"><b>Why the declaration leads:</b> NPS Act 2020 posture — ZUKA is not a
+    payment aggregator, and the paper a vendor might show a bank or URA must say so in the
+    vendor's own language ("nothing to release — you already have it").</p>
+    <p class="caption"><b>Gates on the eventual build:</b> payment_rails domain — zuka-security
+    + zuka-legal review before anything ships; counsel wording for the declaration.</p>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): both documents on the
+ratified light-print surface · A-18: credential-export reconciliation with §12.3 recorded, works-
+once honesty, no name (DPPA-min), holder-initiated only, SMS/app fallbacks named · A-19: vendor-
+direct declaration leads, rows are server-confirmed transactions verbatim (UGX integer), fee row
+reserved not invented, Phase-2 scope stated, security/legal gates named · no coral (paper is never
+a live state) · print-safe gold · Flutterwave named on both. </p>
+<p class="micro">ZUKA · docs/design/mockups/a-18-documents/ticket-and-vendor-docs.html (pair sheet
+— A-19 points here) · feeds ZUKA_DESIGN_LIVING_DOC.md §15 (the spec of record)</p>
+</main>
+
+<script>
+/* Placeholder QR — deterministic, non-scannable; stands in for the QR painter (ADR-030). */
+document.querySelectorAll('canvas.qr').forEach(function(c){
+  var ctx=c.getContext('2d'), n=29, s=parseInt(c.dataset.seed||'7',10);
+  ctx.fillStyle='#FFFFFF'; ctx.fillRect(0,0,n,n); ctx.fillStyle='#0E0C0A';
+  var r=function(){ s=(s*1103515245+12345)&0x7fffffff; return s/0x7fffffff; };
+  for(var y=0;y<n;y++)for(var x=0;x<n;x++){ if(r()<0.45) ctx.fillRect(x,y,1,1); }
+  function f(cx,cy){ ctx.fillStyle='#0E0C0A'; ctx.fillRect(cx,cy,7,7);
+    ctx.fillStyle='#FFFFFF'; ctx.fillRect(cx+1,cy+1,5,5);
+    ctx.fillStyle='#0E0C0A'; ctx.fillRect(cx+2,cy+2,3,3); }
+  f(0,0); f(n-7,0); f(0,n-7);
+});
+</script>

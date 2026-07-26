@@ -1,0 +1,228 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Nearby / Map — A-10</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  /* lens control */
+  .lens{display:flex;background:var(--ink1);border:1px solid var(--ink2);border-radius:999px;
+        padding:3px;margin-bottom:var(--md);}
+  .lens span{flex:1;text-align:center;font-size:14px;line-height:20px;font-weight:600;
+             padding:6px 0;border-radius:999px;color:var(--ink4);}
+  .lens .on{background:var(--ink2);color:var(--ink5);}
+  /* map canvas placeholder */
+  .map{position:relative;height:320px;border-radius:12px;border:1px solid var(--ink2);
+       overflow:hidden;margin-bottom:var(--md);
+       background:
+        linear-gradient(23deg, transparent 47%, rgba(107,104,99,.16) 48%, rgba(107,104,99,.16) 49%, transparent 50%),
+        linear-gradient(-31deg, transparent 44%, rgba(107,104,99,.13) 45%, rgba(107,104,99,.13) 46%, transparent 47%),
+        linear-gradient(78deg, transparent 63%, rgba(107,104,99,.18) 64%, rgba(107,104,99,.18) 65%, transparent 66%),
+        linear-gradient(101deg, transparent 30%, rgba(107,104,99,.12) 31%, rgba(107,104,99,.12) 32.5%, transparent 33.5%),
+        radial-gradient(220px 140px at 30% 70%, rgba(26,58,42,.35), transparent 70%),
+        #14120F;}
+  .maplabel{position:absolute;top:8px;left:10px;font-family:var(--mono);font-size:10px;
+            color:var(--ink3);letter-spacing:.1em;}
+  .me{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--info);
+      border:3px solid rgba(74,144,184,.35);background-clip:padding-box;}
+  .pin{position:absolute;width:16px;height:16px;border-radius:50% 50% 50% 0;
+       transform:rotate(-45deg);border:2px solid rgba(14,12,10,.8);}
+  .pin i{position:absolute;inset:3px;border-radius:50%;transform:rotate(45deg);}
+  .p-live{background:var(--liveCoral);}
+  .p-soon{background:var(--emberGold);}
+  .p-tonight{background:var(--kampalaForest);}
+  .pulse-ring{position:absolute;width:16px;height:16px;border-radius:50%;
+              border:2px solid var(--liveCoral);
+              animation:ring 700ms cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes ring{from{transform:scale(1);opacity:.8}to{transform:scale(2);opacity:0}}
+  .digichip{position:absolute;bottom:10px;left:10px;background:var(--ink1);
+            border:1px solid var(--ink2);border-radius:999px;padding:6px 14px;
+            font-size:12px;line-height:16px;font-weight:500;color:var(--ink4);}
+  .radchip{position:absolute;bottom:10px;right:10px;background:var(--ink1);
+           border:1px solid var(--ink2);border-radius:999px;padding:6px 14px;
+           font-family:var(--mono);font-size:12px;color:var(--ink4);}
+  /* bottom sheet card */
+  .sheet{background:var(--ink1);border:1px solid var(--ink2);
+         border-radius:16px 16px 12px 12px;padding:var(--md);
+         box-shadow:0 -8px 40px rgba(0,0,0,.5);position:relative;overflow:hidden;
+         padding-left:calc(var(--md) + 6px);}
+  .sheet::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                 background:var(--statusc,var(--liveCoral));}
+  .grab{width:36px;height:4px;border-radius:2px;background:var(--ink2);margin:0 auto var(--md);}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+        font-weight:500;padding:2px 10px;border-radius:999px;}
+  .pill-live{background:rgba(255,77,77,.14);color:var(--liveCoral);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--liveCoral);}
+  .pulse{animation:pulse 700ms cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.5);opacity:.55}}
+  .c-title{font-size:18px;line-height:24px;font-weight:600;margin:var(--sm) 0 2px;}
+  .c-venue{font-size:14px;line-height:20px;color:var(--ink3);}
+  .c-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:var(--sm);}
+  .c-time{font-family:var(--mono);font-size:14px;color:var(--ink4);}
+  .c-price{font-size:16px;font-weight:600;}
+  .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       box-sizing:border-box;cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .row{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+       padding:var(--sm) var(--md) var(--sm) calc(var(--md) + 6px);
+       position:relative;overflow:hidden;margin-bottom:var(--sm);}
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+               background:var(--statusc,var(--kampalaForest));}
+  .r-top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sm);}
+  .r-title{font-size:16px;line-height:24px;font-weight:600;}
+  .r-dist{font-family:var(--mono);font-size:14px;color:var(--ink4);flex:0 0 auto;}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  .empty{display:flex;flex-direction:column;gap:var(--sm);align-items:flex-start;padding:var(--lg) 0;}
+  @media (prefers-reduced-motion: reduce){
+    .pulse,.pulse-ring,.skel::after{animation:none;} .btn{transition:none;}
+  }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-10 · NEARBY / MAP — THE SPATIAL LENS · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>The same feed, on the ground.</h1>
+<p class="lede">§2's law rendered: the map is a <b>lens, not a destination</b> — the same feed
+items, plotted by <span class="data">venue_lat/venue_lng</span> (S051, live in both feed RPCs),
+tapped into the same FeedItem card. Zero-login holds on the map (proof 2). Pins carry the colour
+law: coral IS correct here — a live pin means a place that is live right now. Design-ahead for the
+F013 build (Mapbox tiles per the locked stack).</p>
+
+<div class="phones">
+
+  <!-- 1 default -->
+  <div class="phone"><div class="phead">1 · DEFAULT — the lens toggled to Map. Pins by state; digital gatherings get a chip, never a fake pin.</div>
+    <div class="lens"><span>Pulse</span><span class="on">Map</span></div>
+    <div class="map">
+      <span class="maplabel">MAPBOX TILES · KAMPALA (placeholder render)</span>
+      <span class="me" style="left:48%;top:58%"></span>
+      <span class="pulse-ring" style="left:31%;top:29%"></span>
+      <span class="pin p-live" style="left:31%;top:29%"><i></i></span>
+      <span class="pin p-soon" style="left:60%;top:40%"><i></i></span>
+      <span class="pin p-soon" style="left:72%;top:66%"><i></i></span>
+      <span class="pin p-tonight" style="left:22%;top:62%"><i></i></span>
+      <span class="pin p-tonight" style="left:52%;top:20%"><i></i></span>
+      <span class="digichip">3 digital gatherings — list</span>
+      <span class="radchip">5 km</span>
+    </div>
+    <p class="micro">Pin = state colour + dark ring for tile contrast; the live pin wears the T2
+    pulse ring (the map's only expressive motion). Blue dot = you (OS location, asked in context,
+    never at launch). Provenance floor: a Signal pin never renders bigger or louder than a real
+    live pin.</p>
+  </div>
+
+  <!-- 2 pin tapped -->
+  <div class="phone"><div class="phead">2 · PIN TAPPED — the SAME FeedItem card, as a bottom sheet. Ember Edge spine = the pin's state. Detail is one tap.</div>
+    <div class="map" style="height:180px">
+      <span class="maplabel">MAPBOX TILES · KAMPALA</span>
+      <span class="pulse-ring" style="left:44%;top:44%"></span>
+      <span class="pin p-live" style="left:44%;top:44%"><i></i></span>
+      <span class="me" style="left:60%;top:70%"></span>
+    </div>
+    <div class="sheet" style="--statusc:var(--liveCoral)">
+      <div class="grab"></div>
+      <span class="pill pill-live"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="c-title">Bell Lager Rooftop Sessions</div>
+      <div class="c-venue">Sky Lounge, Nakasero · 1.1 km away</div>
+      <div class="c-row"><span class="c-time">since 20:00 · 214 here</span><span class="c-price">UGX 15,000</span></div>
+      <div style="display:flex;gap:var(--sm);margin-top:var(--md)">
+        <button class="btn" style="flex:1">See it</button>
+        <button class="btn btn-ghost" style="flex:1">Directions</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 empty/widen -->
+  <div class="phone"><div class="phead">3 · EMPTY → AUTO-WIDEN — mirrors the backend's 5 → 10 km → city-wide ladder. Direction, not mood.</div>
+    <div class="lens"><span>Pulse</span><span class="on">Map</span></div>
+    <div class="map" style="height:200px">
+      <span class="maplabel">MAPBOX TILES · KAMPALA</span>
+      <span class="me" style="left:48%;top:52%"></span>
+      <span class="radchip">10 km</span>
+    </div>
+    <div class="empty">
+      <p style="margin:0;font-size:18px;font-weight:600">A quiet stretch of Ntinda.</p>
+      <p class="caption" style="margin:0">Nothing within 5 km — widened to 10. 12 gatherings are
+      on across Kampala tonight.</p>
+      <button class="btn btn-ghost">Show the whole city</button>
+    </div>
+  </div>
+
+  <!-- 4 offline + low-data -->
+  <div class="phone"><div class="phead">4 · OFFLINE + LOW-DATA — cached pins with an as-of time; low-data drops tiles entirely and becomes the list it always was.</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>You're offline.</b> Showing pins as of <span class="data">20:41</span> — states may
+      have changed.</span></div>
+    <div class="ribbon"><span class="rdot" style="background:var(--info)"></span>
+      <span><b>Low-data mode:</b> no map tiles — same places, as a list with distances. The lens
+      still works; it just stops costing megabytes.</span></div>
+    <div class="row" style="--statusc:var(--liveCoral)">
+      <div class="r-top"><span class="r-title">Bell Lager Rooftop Sessions</span><span class="r-dist">1.1 km</span></div>
+      <div class="caption">Sky Lounge, Nakasero · live since 20:00</div>
+    </div>
+    <div class="row" style="--statusc:var(--emberGold)">
+      <div class="r-top"><span class="r-title">Acoustic Night at Ndere Centre</span><span class="r-dist">2.3 km</span></div>
+      <div class="caption">Ntinda · starts 21:00</div>
+    </div>
+    <div class="row" style="--statusc:var(--kampalaForest)">
+      <div class="r-top"><span class="r-title">Poetry &amp; Chill</span><span class="r-dist">4.8 km</span></div>
+      <div class="caption">Design Hub Kampala, Bugolobi · doors 19:30</div>
+    </div>
+  </div>
+
+  <!-- 5 loading -->
+  <div class="phone"><div class="phead">5 · LOADING — map skeleton keeps the frame; pins arrive, tiles fill behind them (pins never wait for tiles).</div>
+    <div class="lens"><span>Pulse</span><span class="on">Map</span></div>
+    <div class="map" style="height:200px;background:#14120F">
+      <span class="maplabel">LOADING TILES…</span>
+      <div class="skel" style="position:absolute;inset:0;border-radius:0;opacity:.4"></div>
+      <span class="pin p-soon" style="left:60%;top:40%"><i></i></span>
+      <span class="pin p-tonight" style="left:22%;top:62%"><i></i></span>
+    </div>
+    <p class="micro">Geo comes from the feed RPC the app already called — pins can plot on a dark
+    canvas before a single tile lands. 3G order: pins first, tiles when they arrive, never a
+    spinner over the whole screen.</p>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): default · pin-tapped
+sheet · empty/auto-widen · offline · low-data list fallback · loading rendered · zero-login holds
+(no auth anywhere on the lens — proof 2) · pin colours = the §2 state law (coral correct: a pin is
+a live place) · digital gatherings never get a fake pin (honest chip → list) · same FeedItem card,
+same Ember Edge spine — the map invents no new card · data = feed RPC fields + venue_lat/lng only
+(S051) · low-data honesty: tiles are the only heavy asset and they're droppable · location asked in
+context, never at launch · reduce-motion freezes pulse ring + shimmer. Deferred with §2: heat-map
+shading waits on crowd signals (additive, same screen).</p>
+<p class="micro">ZUKA · docs/design/mockups/a-10-nearby-map/nearby-map.html · feeds
+ZUKA_DESIGN_LIVING_DOC.md §2 (the spec of record) · design-ahead for the F013 build (Mapbox per
+the locked stack; tile-seed session queued as map-lens-kampala-tile-seed)</p>
+</main>

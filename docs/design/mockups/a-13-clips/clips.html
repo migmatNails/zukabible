@@ -1,0 +1,248 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Clips — A-13 · A-14 · A-17</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  .group{font-size:12px;line-height:16px;font-weight:500;letter-spacing:.08em;color:var(--ink3);
+         margin:var(--md) 0 var(--sm);}
+  .row{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+       padding:var(--sm) var(--md) var(--sm) calc(var(--md) + 6px);
+       position:relative;overflow:hidden;margin-bottom:var(--sm);}
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+               background:var(--statusc,var(--kampalaForest));}
+  .r-top{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sm);}
+  .r-title{font-size:16px;line-height:24px;font-weight:600;}
+  .r-meta{font-family:var(--mono);font-size:14px;color:var(--ink4);flex:0 0 auto;}
+  .r-sub{display:flex;justify-content:space-between;align-items:center;gap:var(--sm);margin-top:2px;}
+  .r-venue{font-size:14px;line-height:20px;color:var(--ink3);}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;line-height:16px;
+        font-weight:600;padding:2px 10px;border-radius:999px;flex:0 0 auto;}
+  .c-live{background:rgba(255,77,77,.14);color:var(--liveCoral);}
+  .c-soon{background:rgba(245,166,35,.14);color:var(--emberGold);}
+  .c-neutral{background:transparent;border:1px solid var(--ink2);color:var(--ink4);}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--liveCoral);}
+  .pulse{animation:pulse 700ms cubic-bezier(.34,1.56,.64,1) infinite alternate;}
+  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.5);opacity:.55}}
+  .searchbar{background:var(--ink1);border:1px solid var(--ink2);border-radius:999px;
+             padding:10px var(--md);color:var(--ink4);font-size:16px;margin-bottom:var(--md);}
+  .unread{position:absolute;right:10px;top:10px;width:8px;height:8px;border-radius:50%;
+          background:var(--emberGold);}
+  /* A-14 snippets */
+  .shares{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .story{width:200px;height:356px;border-radius:14px;overflow:hidden;position:relative;
+         border:1px solid var(--ink2);display:flex;flex-direction:column;
+         padding:16px;box-sizing:border-box;}
+  .zmark{font-family:var(--grotesk);font-weight:700;font-size:16px;letter-spacing:.06em;}
+  .zmark span{color:var(--emberGold);}
+  .sh-big{font-family:var(--grotesk);font-weight:700;font-size:22px;line-height:25px;margin:auto 0 6px;}
+  .sh-title{font-size:14px;line-height:19px;font-weight:600;}
+  .sh-meta{font-size:12px;line-height:17px;color:var(--ink4);margin-top:4px;}
+  .sh-foot{font-family:var(--mono);font-size:9px;color:var(--ink3);margin-top:12px;}
+  .plabel{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:var(--sm) 0 0;width:200px;}
+  .livepill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+            border-radius:999px;padding:3px 10px;background:rgba(255,77,77,.16);
+            color:var(--liveCoral);}
+  /* A-17 video card */
+  .vid{position:relative;height:180px;border-radius:8px;overflow:hidden;margin:var(--sm) 0;
+       background:
+        radial-gradient(140px 90px at 55% 45%, rgba(245,166,35,.14), transparent 70%),
+        radial-gradient(200px 140px at 20% 80%, rgba(26,58,42,.5), transparent 70%),
+        #14120F;}
+  .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+        width:52px;height:52px;border-radius:50%;background:rgba(14,12,10,.72);
+        border:1.5px solid var(--ink5);display:flex;align-items:center;justify-content:center;
+        color:var(--ink5);font-size:18px;}
+  .cost{position:absolute;right:8px;bottom:8px;background:rgba(14,12,10,.8);
+        border-radius:999px;padding:4px 12px;font-family:var(--mono);font-size:12px;
+        color:var(--ink4);}
+  .mute{position:absolute;left:8px;bottom:8px;background:rgba(14,12,10,.8);
+        border-radius:999px;padding:4px 12px;font-size:12px;color:var(--ink4);}
+  .dur{position:absolute;left:8px;top:8px;background:rgba(14,12,10,.8);
+       border-radius:999px;padding:4px 12px;font-family:var(--mono);font-size:12px;color:var(--ink4);}
+  .card{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+        padding:var(--md) var(--md) var(--md) calc(var(--md) + 6px);
+        position:relative;overflow:hidden;margin-bottom:var(--md);}
+  .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                background:var(--statusc,var(--kampalaForest));}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  @media (prefers-reduced-motion: reduce){
+    .pulse,.skel::after{animation:none;}
+  }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-13 / A-14 / A-17 · CLIPS — LIST ROWS · SOCIAL SNIPPETS · VIDEO PREVIEWS · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>The small formats, made law.</h1>
+<p class="lede">Three clip classes, one system. The <b>Ember Edge compact row</b> (already live in
+A-03 and A-10's list fallback) is codified here as THE canonical dense-list grammar. Social
+snippets consolidate what A-05 and A-09 already ratified and add the two live-state shares. The
+video preview card is design-ahead — no media pipeline exists (poster/video = Media, ADR-009;
+named ask, not designed around).</p>
+
+<h2>A-13 · Compact list rows — the canonical two-line grammar</h2>
+<div class="phones">
+  <div class="phone"><div class="phead">1 · GRAMMAR + SEARCH CONTEXT — line 1: title + right-aligned fact; line 2: context + state chip. Spine = state.</div>
+    <div class="searchbar">🔍 &nbsp;acoustic</div>
+    <div class="row" style="--statusc:var(--emberGold)">
+      <div class="r-top"><span class="r-title">Acoustic Night at Ndere Centre</span><span class="r-meta">2.3 km</span></div>
+      <div class="r-sub"><span class="r-venue">Ntinda · tonight 21:00</span>
+        <span class="chip c-soon">Starting soon</span></div>
+    </div>
+    <div class="row" style="--statusc:var(--kampalaForest)">
+      <div class="r-top"><span class="r-title">Acoustic Sundays</span><span class="r-meta">5.1 km</span></div>
+      <div class="r-sub"><span class="r-venue">The Alchemist, Kololo · Sun 17:00</span>
+        <span class="chip c-neutral">Scheduled</span></div>
+    </div>
+    <p class="micro">Right-aligned fact slot is context-owned: distance in search/map, time in
+    tickets, nothing in inbox. One chip max — a row is a glance, not a card.</p>
+  </div>
+
+  <div class="phone"><div class="phead">2 · INBOX / NOTIFICATION CONTEXT — the "went live" push landing + system rows. Reserved route `/inbox` (§9).</div>
+    <div class="group">TONIGHT</div>
+    <div class="row" style="--statusc:var(--liveCoral)">
+      <span class="unread"></span>
+      <div class="r-top"><span class="r-title">Sky Lounge just went live</span><span class="r-meta">20:00</span></div>
+      <div class="r-sub"><span class="r-venue">Bell Lager Rooftop Sessions — you follow this venue</span>
+        <span class="chip c-live"><span class="dot pulse"></span>LIVE</span></div>
+    </div>
+    <div class="row" style="--statusc:var(--success)">
+      <div class="r-top"><span class="r-title">Ticket secured</span><span class="r-meta">17:02</span></div>
+      <div class="r-sub"><span class="r-venue">Poetry &amp; Chill · <span class="data">ZKA_TCK_2C81</span></span></div>
+    </div>
+    <div class="row" style="--statusc:var(--emberGold)">
+      <div class="r-top"><span class="r-title">Waiting for payment</span><span class="r-meta">19:48</span></div>
+      <div class="r-sub"><span class="r-venue">Tap to resume — MTN approval pending</span></div>
+    </div>
+    <p class="micro">Unread = quiet gold dot, never a count badge on rows. Row tap = the push's own
+    deep link (live row → Detail, ticket rows → §8). Inbox itself is a reserved surface — rows
+    designed now, screen assembles when `/inbox` registers.</p>
+  </div>
+</div>
+
+<h2>A-14 · Social snippets — the share family, consolidated</h2>
+<p class="caption" style="max-width:660px">Two are already ratified elsewhere and referenced, not
+re-designed: <b>"I'm going" / ticket flex</b> = A-05's story (receipt trio) · <b>gathering
+announce</b> = A-09's template story output. New here: the two LIVE-state shares — the only
+exported surfaces that may wear coral, because they share a genuinely live state. Masking law
+(§12.3) applies family-wide: no QR, no full ticket_ref, no person name, ever.</p>
+<div class="shares">
+  <div>
+    <div class="story" style="background:
+      radial-gradient(160px 120px at 75% 20%, rgba(255,77,77,.22), transparent 70%), var(--midnight);color:var(--ink5)">
+      <div class="zmark">ZU<span>K</span>A</div>
+      <span class="livepill" style="margin-top:10px"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="sh-big">The rooftop just came alive.</div>
+      <div class="sh-title">Bell Lager Rooftop Sessions</div>
+      <div class="sh-meta">Sky Lounge, Nakasero · since 20:00</div>
+      <div class="sh-foot">zukaapp.com · live right now</div>
+    </div>
+    <p class="plabel">NEW · "LIVE NOW" venue share — from the feed/Detail ⋯ while live. Coral
+    correct: it shares a live state, honestly, in the moment.</p>
+  </div>
+  <div>
+    <div class="story" style="background:
+      radial-gradient(200px 150px at 50% 85%, rgba(245,166,35,.16), transparent 70%), var(--midnight);color:var(--ink5)">
+      <div class="zmark">ZU<span>K</span>A</div>
+      <div class="sh-big" style="font-family:var(--grotesk);font-size:40px;line-height:42px;margin:auto 0 2px">47</div>
+      <div class="sh-title">events live in Kampala right now</div>
+      <div class="sh-meta">Friday 18 Jul · 22:41</div>
+      <div class="sh-foot">zukaapp.com · the city just came alive</div>
+    </div>
+    <p class="plabel">NEW · CITY PULSE share — the count as the hero (display type's stated job).
+    Timestamped so a stale share never lies about "right now".</p>
+  </div>
+  <div style="max-width:300px">
+    <p class="caption"><b>Family rules:</b> generated on-device from data the feed already
+    returned; every live-state snippet carries its timestamp (honesty against stale reshares);
+    tagline verbatim ("the city just came alive" — never remixed); no engagement-bait copy
+    ("🔥 don't miss out" is a never-say). The count share only renders from the REAL pulse count —
+    never a made-up number (launch-status honesty).</p>
+    <p class="caption">Referenced, already ratified: "I'm going" story + square (A-05, amount
+    default-off) · announce story (A-09 templates, no coral). This family = 6 snippets total,
+    2 new.</p>
+  </div>
+</div>
+
+<h2>A-17 · Video moment preview — design-ahead, cellular-honest</h2>
+<div class="phones">
+  <div class="phone"><div class="phead">1 · CELLULAR DEFAULT — a poster frame, a play button, and the honest price of tapping it. Nothing moves, nothing loads.</div>
+    <div class="card" style="--statusc:var(--liveCoral)">
+      <span class="chip c-live"><span class="dot pulse"></span>LIVE NOW</span>
+      <div class="r-top" style="margin-top:var(--sm)"><span class="r-title">Bell Lager Rooftop Sessions</span></div>
+      <div class="r-venue">Sky Lounge, Nakasero · 1.1 km</div>
+      <div class="vid">
+        <span class="dur">0:12</span>
+        <div class="play">▶</div>
+        <span class="cost">12 MB</span>
+      </div>
+      <p class="micro" style="margin:0">Moment from the venue · 21:04</p>
+    </div>
+    <p class="micro">On cellular NOTHING auto-plays and no video bytes load — the still frame is
+    part of the feed payload (thumb budget). The cost chip is the consent: tap = spend.</p>
+  </div>
+
+  <div class="phone"><div class="phead">2 · WI-FI · LOADING · UNAVAILABLE — muted autoplay only on Wi-Fi; failure never blocks the card's job.</div>
+    <div class="card" style="--statusc:var(--liveCoral)">
+      <div class="vid">
+        <span class="dur">0:12</span>
+        <span class="mute">🔇 muted</span>
+        <span class="cost">Wi-Fi</span>
+      </div>
+      <p class="micro" style="margin:0">Wi-Fi: plays muted, loops once, sound is a tap. Reduce-
+      motion: never autoplays anywhere.</p>
+    </div>
+    <div class="card" style="--statusc:var(--ink2)">
+      <div class="skel" style="height:100px;border-radius:8px;margin-bottom:var(--sm)"></div>
+      <p class="micro" style="margin:0">Loading: skeleton holds the frame; the card's text works
+      before any media does.</p>
+    </div>
+    <div class="ribbon" style="margin:0"><span class="rdot" style="background:var(--info)"></span>
+      <span><b>Clip unavailable.</b> The gathering card stays fully usable — video is garnish,
+      never the meal.</span></div>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): A-13 grammar + 2
+contexts · A-14 family (2 new + 4 referenced) · A-17 in 4 states · coral only on genuinely-live
+rows/snippets (the live-share is the sanctioned exported coral — it shares a live state with its
+timestamp) · masking law family-wide (no QR/full ref/person name on exports) · pulse-count share
+renders real counts only · cellular autoplay OFF with data cost as consent · reduce-motion kills
+autoplay + pulse + shimmer · no engagement-bait copy anywhere · Ember Edge compact codified (spine
++ two lines + one chip max). Named asks: `/inbox` route (reserved, §9) · media/moment pipeline for
+A-17 (Media per ADR-009 — poster frame in feed payload, video via Storage/CDN; does NOT exist) ·
+share-render dep rides the ADR-030 pile.</p>
+<p class="micro">ZUKA · docs/design/mockups/a-13-clips/clips.html (clip-class sheet — A-14/A-17
+point here) · feeds ZUKA_DESIGN_LIVING_DOC.md §13 (the spec of record)</p>
+</main>

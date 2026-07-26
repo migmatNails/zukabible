@@ -1,0 +1,238 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZUKA Receipt Trio — A-04 · A-05 · A-06</title>
+<style>
+  :root{
+    --liveCoral:#FF4D4D; --emberGold:#F5A623; --kampalaForest:#1A3A2A;
+    --midnight:#0E0C0A; --ink0:#0E0C0A; --ink1:#1A1815; --ink2:#2A2724;
+    --ink3:#6B6863; --ink4:#A8A49E; --ink5:#F2EFEA;
+    --success:#3A9D5C; --warning:#E08A2B; --error:#D64545; --info:#4A90B8;
+    --xs:4px; --sm:8px; --md:16px; --lg:24px; --xl:32px; --xxl:48px;
+    --quick:120ms;
+    --grotesk:'Space Grotesk','Arial Narrow',sans-serif;
+    --inter:Inter,system-ui,sans-serif; --mono:'Space Mono',monospace;
+  }
+  html{background:var(--midnight);}
+  body{margin:0;font-family:var(--inter);font-size:16px;line-height:1.5;
+       color:var(--ink5);background:var(--midnight);-webkit-font-smoothing:antialiased;}
+  main{max-width:1200px;margin:0 auto;padding:var(--lg) var(--md) var(--xxl);}
+  h1{font-family:var(--grotesk);font-size:26px;line-height:32px;font-weight:600;margin:var(--md) 0 var(--xs);}
+  h2{font-family:var(--grotesk);font-size:21px;line-height:28px;font-weight:600;
+     margin:var(--xl) 0 var(--md);padding-top:var(--md);border-top:1px solid var(--ink2);}
+  .caption{font-size:14px;line-height:20px;color:var(--ink3);}
+  .micro{font-size:12px;line-height:16px;font-weight:500;color:var(--ink3);}
+  .data{font-family:var(--mono);font-size:14px;line-height:20px;}
+  .lede{color:var(--ink4);max-width:660px;margin:0 0 var(--lg);}
+  .phones{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .phone{width:360px;max-width:100%;background:var(--ink0);border:1px solid var(--ink2);
+         border-radius:18px;padding:var(--md);box-sizing:border-box;flex:0 0 auto;}
+  .phead{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 var(--md);}
+  .card{background:var(--ink1);border:1px solid var(--ink2);border-radius:12px;
+        padding:var(--md);margin-bottom:var(--md);position:relative;overflow:hidden;}
+  .spine{padding-left:calc(var(--md) + 6px);}
+  .spine::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+                 background:var(--statusc,var(--success));}
+  .btn{display:block;width:100%;text-align:center;font-size:16px;font-weight:600;color:#0E0C0A;
+       background:var(--emberGold);border:none;border-radius:10px;padding:12px var(--md);
+       box-sizing:border-box;cursor:pointer;transition:transform var(--quick) cubic-bezier(.33,1,.68,1);}
+  .btn:active{transform:scale(.97);}
+  .btn-ghost{background:transparent;color:var(--ink5);border:1px solid var(--ink2);}
+  .btnrow{display:flex;gap:var(--sm);} .btnrow .btn{flex:1;width:auto;}
+  .ribbon{display:flex;gap:var(--sm);align-items:flex-start;font-size:14px;line-height:20px;
+          background:var(--ink1);border:1px solid var(--ink2);border-radius:8px;
+          padding:var(--sm) var(--md);margin-bottom:var(--md);color:var(--ink4);}
+  .rdot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:0 0 auto;}
+  .facts{margin:var(--md) 0 0;}
+  .frow{display:flex;justify-content:space-between;gap:var(--md);padding:var(--sm) 0;
+        border-bottom:1px solid var(--ink2);font-size:14px;line-height:20px;}
+  .frow:last-child{border-bottom:none;}
+  .frow .k{color:var(--ink3);} .frow .v{text-align:right;color:var(--ink5);}
+  .amount{font-family:var(--grotesk);font-size:32px;line-height:38px;font-weight:700;margin:var(--sm) 0 2px;}
+  .paidline{display:flex;gap:var(--sm);align-items:center;color:var(--success);font-weight:600;
+            font-size:14px;margin-bottom:var(--sm);}
+  .pdot{width:10px;height:10px;border-radius:50%;background:var(--success);}
+  .skel{background:var(--ink2);border-radius:6px;position:relative;overflow:hidden;}
+  .skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(242,239,234,.07),transparent);
+    animation:shimmer 1200ms linear infinite;}
+  @keyframes shimmer{to{transform:translateX(100%)}}
+  /* A-05 share images */
+  .shares{display:flex;flex-wrap:wrap;gap:var(--lg);align-items:flex-start;}
+  .story{width:270px;height:480px;border-radius:14px;overflow:hidden;position:relative;
+         background:
+          radial-gradient(200px 160px at 80% 12%, rgba(245,166,35,.18), transparent 70%),
+          radial-gradient(240px 200px at 15% 90%, rgba(26,58,42,.55), transparent 70%),
+          var(--midnight);
+         border:1px solid var(--ink2);display:flex;flex-direction:column;
+         padding:20px;box-sizing:border-box;}
+  .square{width:270px;height:270px;border-radius:14px;overflow:hidden;position:relative;
+         background:
+          radial-gradient(160px 120px at 85% 15%, rgba(245,166,35,.18), transparent 70%),
+          var(--midnight);
+         border:1px solid var(--ink2);display:flex;flex-direction:column;
+         padding:18px;box-sizing:border-box;}
+  .zmark{font-family:var(--grotesk);font-weight:700;font-size:20px;letter-spacing:.06em;}
+  .zmark span{color:var(--emberGold);}
+  .sh-going{font-family:var(--grotesk);font-weight:700;font-size:24px;line-height:28px;margin:auto 0 6px;}
+  .sh-title{font-size:16px;line-height:22px;font-weight:600;}
+  .sh-meta{font-size:13px;line-height:18px;color:var(--ink4);margin-top:4px;}
+  .sh-paid{display:inline-block;background:rgba(58,157,92,.18);color:var(--success);
+           font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px;margin-top:10px;}
+  .sh-foot{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:14px;}
+  /* A-06 document */
+  .doc{width:420px;max-width:100%;background:#FFFFFF;color:#1A1815;border-radius:6px;
+       padding:28px;box-sizing:border-box;font-size:13px;line-height:19px;
+       box-shadow:0 8px 40px rgba(0,0,0,.5);}
+  .doc .dhead{display:flex;justify-content:space-between;align-items:baseline;
+              border-bottom:2px solid #0E0C0A;padding-bottom:10px;margin-bottom:14px;}
+  .doc .dz{font-family:var(--grotesk);font-weight:700;font-size:18px;color:#0E0C0A;}
+  .doc .dz span{color:#C77F0E;}
+  .doc .dtitle{font-family:var(--mono);font-size:11px;color:#6B6863;letter-spacing:.1em;}
+  .doc h3{font-family:var(--grotesk);font-size:16px;line-height:22px;margin:0 0 2px;color:#0E0C0A;}
+  .doc .dmeta{color:#6B6863;margin:0 0 12px;}
+  .doc table{width:100%;border-collapse:collapse;margin:0 0 12px;}
+  .doc td{padding:6px 0;border-bottom:1px solid #E8E4DD;vertical-align:top;}
+  .doc td.k{color:#6B6863;width:42%;}
+  .doc td.v{text-align:right;font-family:var(--mono);font-size:12px;color:#1A1815;}
+  .doc .dtotal td{border-bottom:none;font-weight:700;font-size:15px;color:#0E0C0A;}
+  .doc .dtotal td.v{font-family:var(--grotesk);font-size:18px;}
+  .doc .dfoot{border-top:1px solid #E8E4DD;padding-top:10px;color:#6B6863;font-size:11px;line-height:16px;}
+  @media (prefers-reduced-motion: reduce){ .skel::after{animation:none;} .btn{transition:none;} }
+</style>
+
+<main>
+<p class="micro" style="letter-spacing:.1em;">ZUKA · A-04 / A-05 / A-06 · THE RECEIPT TRIO · DRAFT FOR FOUNDER REVIEW · 2026-07-18</p>
+<h1>One receipt, three surfaces.</h1>
+<p class="lede">The receipt as one identity: the in-app record (A-04), the WhatsApp/IG share image
+(A-05), and the saveable document (A-06). Two laws bind all three: <b>money facts are
+server-returned verbatim</b> (amount_ugx, tx_ref — never client-computed), and <b>admission
+credentials never leave the app</b> — the QR never appears here, and ticket_ref is masked on every
+exported surface (it's a typed gate fallback, §10). The Flutterwave tx_ref is the receipt's public
+identity. Design-ahead: no receipt-read RPC exists yet (open question below).</p>
+
+<h2>A-04 · In-app receipt — reached from the ticket (§8) and the confirmed moment (§7)</h2>
+<div class="phones">
+  <div class="phone"><div class="phead">1 · PAID — the record. Success spine; facts as rows; both exports one tap away.</div>
+    <div class="card spine" style="--statusc:var(--success)">
+      <div class="paidline"><span class="pdot"></span>Paid · Mobile Money via Flutterwave</div>
+      <div class="amount">UGX 25,000</div>
+      <p class="caption" style="margin:0">General admission · 1 ticket</p>
+      <div class="facts">
+        <div class="frow"><span class="k">Gathering</span><span class="v">Acoustic Night at Ndere Centre</span></div>
+        <div class="frow"><span class="k">When</span><span class="v">Fri 18 Jul · 21:00</span></div>
+        <div class="frow"><span class="k">Venue</span><span class="v">Ndere Cultural Centre, Ntinda</span></div>
+        <div class="frow"><span class="k">Paid</span><span class="v data">18 Jul 2026 · 20:14</span></div>
+        <div class="frow"><span class="k">Payment ref</span><span class="v data">FLW-TX-8834B2</span></div>
+        <div class="frow"><span class="k">Ticket</span><span class="v data">ZKA_TCK_9F3A</span></div>
+      </div>
+    </div>
+    <div class="btnrow"><button class="btn btn-ghost">Share image</button><button class="btn btn-ghost">Save PDF</button></div>
+    <p class="micro" style="margin:var(--sm) 0 0">Full ticket_ref renders ONLY here, inside the app.
+    Exports mask it (below).</p>
+  </div>
+
+  <div class="phone"><div class="phead">2 · FREE CLAIM — a receipt exists even when no money moved: it's the record of the claim, not the charge.</div>
+    <div class="card spine" style="--statusc:var(--success)">
+      <div class="paidline"><span class="pdot"></span>Free entry · no payment made</div>
+      <div class="amount">UGX 0</div>
+      <p class="caption" style="margin:0">Free tier · 1 ticket</p>
+      <div class="facts">
+        <div class="frow"><span class="k">Gathering</span><span class="v">Poetry &amp; Chill</span></div>
+        <div class="frow"><span class="k">When</span><span class="v">Fri 18 Jul · 19:30</span></div>
+        <div class="frow"><span class="k">Venue</span><span class="v">Design Hub Kampala, Bugolobi</span></div>
+        <div class="frow"><span class="k">Claimed</span><span class="v data">18 Jul 2026 · 17:02</span></div>
+        <div class="frow"><span class="k">Ticket</span><span class="v data">ZKA_TCK_2C81</span></div>
+      </div>
+    </div>
+    <p class="micro">No payment ref row — a row that would be empty doesn't render. "FREE!!!"
+    theater is a never-say; the state line is enough.</p>
+  </div>
+
+  <div class="phone"><div class="phead">3 · OFFLINE · LOADING · ERROR — the receipt is cacheable (it changes never; it's history).</div>
+    <div class="ribbon"><span class="rdot" style="background:var(--warning)"></span>
+      <span><b>You're offline.</b> This receipt was saved on this phone — it doesn't change.</span></div>
+    <div class="card spine" style="--statusc:var(--ink2)">
+      <div class="skel" style="width:140px;height:32px;margin-bottom:10px"></div>
+      <div class="skel" style="width:90%;height:14px;margin-bottom:8px"></div>
+      <div class="skel" style="width:75%;height:14px"></div>
+    </div>
+    <div class="card spine" style="--statusc:var(--ink2)">
+      <div class="ribbon" style="margin:0 0 var(--md)"><span class="rdot" style="background:var(--error)"></span>
+        <span><b>That didn't load.</b> The network dropped — your ticket and money are untouched.</span></div>
+      <div class="btnrow"><button class="btn">Try again</button></div>
+    </div>
+  </div>
+</div>
+
+<h2>A-05 · Share image — branded proof, exported as an image. No QR, ref masked.</h2>
+<div class="shares">
+  <div class="story">
+    <div class="zmark">ZU<span>K</span>A</div>
+    <div class="sh-going">I'm going.</div>
+    <div class="sh-title">Acoustic Night at Ndere Centre</div>
+    <div class="sh-meta">Fri 18 Jul · 21:00 · Ntinda, Kampala</div>
+    <span class="sh-paid">Ticket secured ✓</span>
+    <div class="sh-foot">FLW-TX-8834B2 · ZKA_TCK_•••• · zukaapp.com</div>
+  </div>
+  <div class="square">
+    <div class="zmark">ZU<span>K</span>A</div>
+    <div class="sh-going" style="font-size:20px;line-height:24px">Ticket secured ✓</div>
+    <div class="sh-title" style="font-size:14px;line-height:19px">Acoustic Night at Ndere Centre</div>
+    <div class="sh-meta">Fri 18 Jul · 21:00 · UGX 25,000</div>
+    <div class="sh-foot">FLW-TX-8834B2 · ZKA_TCK_••••</div>
+  </div>
+  <div style="max-width:300px">
+    <p class="caption">Story 1080×1920 and square 1080×1080, generated on-device from the receipt
+    facts (no network, no screenshot of the QR screen to sanitise). The story variant leads with
+    the social line ("I'm going."); the square leads with the proof line. <b>The amount appears on
+    the square (receipt-flavoured) and not the story (social-flavoured)</b> — flaunting price is
+    not the vibe; the founder can flip either. Logo renders as the labelled wordmark placeholder —
+    real mark from <span class="data">assets/brand/</span>.</p>
+    <p class="caption"><b>Privacy law:</b> no QR, ticket_ref masked to
+    <span class="data">ZKA_TCK_••••</span>, no person name — a shared image admits no one and
+    identifies no one. tx_ref stays full: it's the payment trail, useless at a gate.</p>
+  </div>
+</div>
+
+<h2>A-06 · Document export — the one light surface (paper is white; print-honest)</h2>
+<div class="shares">
+  <div class="doc">
+    <div class="dhead"><span class="dz">ZU<span>K</span>A</span>
+      <span class="dtitle">PAYMENT RECEIPT</span></div>
+    <h3>Acoustic Night at Ndere Centre</h3>
+    <p class="dmeta">Fri 18 Jul 2026 · 21:00 · Ndere Cultural Centre, Ntinda, Kampala</p>
+    <table>
+      <tr><td class="k">Item</td><td class="v">General admission × 1</td></tr>
+      <tr><td class="k">Paid</td><td class="v">18 Jul 2026 · 20:14 EAT</td></tr>
+      <tr><td class="k">Method</td><td class="v">Mobile Money (MTN) via Flutterwave</td></tr>
+      <tr><td class="k">Payment reference</td><td class="v">FLW-TX-8834B2</td></tr>
+      <tr><td class="k">Ticket</td><td class="v">ZKA_TCK_•••• (full code in your ZUKA app)</td></tr>
+      <tr class="dtotal"><td class="k">Total paid</td><td class="v">UGX 25,000</td></tr>
+    </table>
+    <div class="dfoot">Generated by ZUKA · zukaapp.com — payment processed by Flutterwave. This
+    document records a payment; it does not admit entry. Your QR ticket lives in the ZUKA app
+    and works offline. Questions? WhatsApp ZUKA support with the payment reference.</div>
+  </div>
+  <div style="max-width:300px">
+    <p class="caption">A5/A4-printable, generated on-device. The single deliberate light-theme
+    surface in ZUKA: paper is white, and a receipt is read in daylight — midnight ink on paper
+    would be a toner joke on a Kampala print shop. Brand carries through the wordmark + gold K
+    (print-safe darker gold) + Space Grotesk headings.</p>
+    <p class="caption"><b>Boundary line, printed on every copy:</b> "this document records a
+    payment; it does not admit entry" — the document can circulate without creating a fake-ticket
+    vector, and support routes on tx_ref.</p>
+  </div>
+</div>
+
+<p class="caption" style="margin-top:var(--xl)">Self-check (Constitution §7): A-04 in 5 states
+(paid · free · offline · loading · error), A-05 in 2 aspects, A-06 print preview · money =
+server-returned amount_ugx/tx_ref only, UGX integer format · admission credentials never exported
+(no QR anywhere; ticket_ref full in-app only, masked on A-05/A-06) · free claim honest, no FREE!!!
+theater · Flutterwave named as processor on every money surface · coral absent (a receipt is never
+a live state) · no animation beyond skeleton shimmer (money surfaces static, ratified) ·
+Ember Edge success spine in-app; A-06 is the ratified-in-principle light-print exception
+(logged for founder ruling like A-07's verdict exception).</p>
+<p class="micro">ZUKA · docs/design/mockups/a-04-purchase-receipt/receipt-trio.html (one sheet for
+the trio — one receipt identity across three surfaces; A-05/A-06 rows point here) · feeds
+ZUKA_DESIGN_LIVING_DOC.md §12 (the spec of record) · blocked on: receipt-read RPC (open question)</p>
+</main>

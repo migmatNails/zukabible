@@ -1,0 +1,366 @@
+# ZUKA BIBLE V4 — VOLUME 25
+# The Brand & Identity System
+
+> **Part VIII — Brand & Expression** · **Authority Level 3** (Experience tier)
+> Status: NEW — systematises and matures the brand foundation that previously
+> existed only as scattered fragments in Volume 01 Ch 9 and a standalone HTML file.
+> Strategy is LOCKED (inherited); visual system is MATURING (Adaptive within brand law).
+> Synthesises: Volume 01 (brand fragments), ZUKA.md §4, the brand-identity HTML
+
+---
+
+## Chapter 0 — What This Volume Is, and Its Discipline
+
+The brand was, until now, under-defined: a tagline, four colours, a font trio, and
+one evocative idea (the waveform Z). That is enough to start but not enough to
+build a coherent product or speak with one voice. This volume matures it into a
+real system — verbal and visual — while holding the discipline the rest of the
+Bible holds: **define what the Kampala MVP needs, mark the rest dormant.**
+
+```
+BRAND LAW (immutable — Stable Zone, founder-gated):
+  The strategy below — positioning, essence, voice, the colour-as-information
+  principle — is locked. It does not drift screen to screen.
+
+BRAND SYSTEM (Adaptive within brand law — Architecture/Design Council):
+  The visual specifics — exact type scale, token values, logo construction —
+  may mature and be refined as the product is built, provided they never
+  violate brand law.
+
+DORMANT (do not build now):
+  Sub-brand architecture (Zuka Ride, Zuka Pulse as products), multi-market
+  brand adaptation, multi-language brand voice, campaign systems. Volume 24.
+```
+
+The test for any brand decision: *does this help build or market the actual
+Kampala MVP?* If yes, it's here. If it's expansion-era, it's dormant.
+
+---
+
+## Chapter 1 — Brand Strategy (LOCKED)
+
+### Positioning Statement
+```
+For the people of a city who want to know where life is happening tonight —
+and for the venues and organisers who make it happen —
+ZUKA is the participation infrastructure that makes the city's live energy
+visible, accessible, and worth remembering.
+Unlike listings apps and ticketing tools that treat an event as a transaction,
+ZUKA treats participation as something that compounds — into memories,
+relationships, trust, and belonging.
+```
+
+### Brand Essence
+```
+THE CITY, ALIVE.
+```
+One idea beneath everything: ZUKA makes the living energy of a place visible and
+joinable in real time. Not "find events." Not "buy tickets." *Feel the city come
+alive, and step into it.*
+
+### The Brand Promise
+```
+When something is happening, you'll know. When you arrive, you'll belong.
+When it's over, it stays with you.
+```
+
+### Brand Personality (five traits, with their guardrails)
+```
+ALIVE         Energetic, present-tense, immediate.    Not manic or hype-y.
+LOCAL         Of Kampala, in the language of Kampala.  Not parochial or excluding.
+WARM          Welcoming, human, belonging-first.       Not saccharine or fake.
+DIRECT        Plain, specific, honest.                 Not blunt or cold.
+TRUSTWORTHY   Reliable, safe, transparent.             Not corporate or stiff.
+```
+
+### What ZUKA Is Not (positioning negatives — sharpen by contrast)
+```
+Not a social network   — participation is real-world; the app points outward.
+Not a hype machine      — energy is shown by real signals, never manufactured.
+Not a listings board     — a gathering is alive, not a static row.
+Not Western-templated    — built for Kampala first, not adapted from the US/EU.
+Not an attention trap     — it helps you go out, not stay scrolling.
+```
+
+---
+
+## Chapter 2 — Brand Origin & Name
+
+```
+ZUKA            from Sheng/Swahili "mzuka" — the electric vibe, the sudden
+                surge of energy when a place comes alive.
+Phonetics       ZOO-kah
+Tagline         "The city just came alive."
+Essence line    "The city, alive."  (shorter, for tight spaces)
+```
+
+The name is a feeling, not a function — deliberately. It carries the brand essence
+in two syllables, in a register locals recognise. This is a strength: protect it.
+Never back-explain the name in product copy ("ZUKA, your events app") — that
+flattens a feeling into a category.
+
+---
+
+## Chapter 3 — Verbal Identity (NEW — the biggest prior gap)
+
+The voice was named but never operationalised. Here is the working system.
+
+### Voice Principles (how ZUKA always sounds)
+```
+PRESENT-TENSE & IMMEDIATE   "47 events live in Kampala" — not "Discover events."
+SPECIFIC OVER CLEVER        "8 spots in Kabalagala, 2km away" — not "Lots nearby!"
+LOCAL-FIRST                 Real neighbourhoods, real venues, Kampala cadence.
+WARM, NOT HYPED             "Sounds good?" — not "🔥 INSANE VIBES TONIGHT 🔥".
+HONEST                      Never imply live-when-pre-launch or scale we lack.
+SHORT                       Built for a phone. One idea per line.
+```
+
+### Messaging Hierarchy (what we lead with, in order)
+```
+1. WHAT'S ALIVE NOW     the live energy of the city (the hook, the differentiator)
+2. EFFORTLESS ACCESS    discover with no wall; enter in 3 taps (the relief)
+3. IT STAYS WITH YOU    memories, belonging, the compounding (the depth)
+```
+Lead with 1. Earn 2. Deepen to 3. Never open on depth-talk ("civilisational
+participation infrastructure") to a person who just wants to know where to go.
+
+### The "We Say / We Never Say" Table
+```
+WE SAY                              WE NEVER SAY
+─────────────────────────────────────────────────────────────────────────
+"live now"                          "trending" / "viral"
+"the city came alive"               "unlock amazing experiences"
+"47 events live in Kampala"         "join thousands of users"
+"Sounds good? 3 spots left."        "🔥 Don't miss out! Selling fast!! 🔥"
+"Gathering" (semantic copy)         "event" used to mean something disposable
+"a quiet night in Ntinda"           a blank empty state
+"New Member" / "Trusted Organiser"  "Trust score: 84"
+"free entry"                        "FREE!!!" with manufactured excitement
+honest availability                 "live now" when it's pre-launch
+```
+
+### Naming Conventions (for features, so the product reads as one voice)
+```
+- Feature names are plain-English actions or living nouns:
+  "Go Live" · "City Pulse" · "Heat Map" · "Live Wall" · "Vibe Drop" · "Crowd Meter"
+- Avoid sub-branded jargon at MVP ("ZukaSense™"). Names describe, they don't trademark.
+- A person is a Person; a community-scale event is a Gathering (UI may show
+  "Events"); trust shows as a state, never a number. (Volume 03 Dictionary governs.)
+```
+
+### Microcopy Doctrine
+```
+Empty states give direction, never mood: name the nearest alive place + distance.
+Errors are plain and recoverable: what happened, what to do, no blame.
+CTAs are verbs the person wants: "Go Live", "Get Tickets", "Tune In".
+Notifications obey the Notification Constitution (Vol 16): 6 categories,
+quiet hours, max 2 discovery/day, grief-sensitive, no engagement-timing.
+```
+
+---
+
+## Chapter 4 — The Colour System (MATURING — built on the locked principle)
+
+### Brand Law: Colour as Information (LOCKED)
+ZUKA's single most distinctive visual decision. Colour is not decoration; it
+*carries meaning*. This principle is immutable; the exact values may be refined
+for accessibility.
+
+```
+INFORMATION COLOURS (semantic — meaning is fixed to the hue):
+  Live Coral    #FF4D4D   LIVE RIGHT NOW. Reserved. Never decorative. Never
+                          used for anything that is not currently live.
+  Ember Gold    #F5A623   Starting soon · primary action · active/energy-rising.
+  Kampala Forest #1A3A2A   Tonight · scheduled · calm-but-coming.
+  Neutral        (greys)   Free entry · general info · the resting state.
+
+BASE:
+  Midnight      #0E0C0A   Primary background — "the city at 2am." The dark canvas
+                          against which live energy glows.
+```
+
+### The System Around It (NEW — what was missing for real implementation)
+A semantic principle needs a full palette to build against. Maturing additions
+(Adaptive — Design Council may tune values, not meanings):
+
+```
+NEUTRAL RAMP (for text, surfaces, borders on the Midnight base):
+  Ink-0  #0E0C0A  base background        Ink-3  #6B6863  secondary text
+  Ink-1  #1A1815  raised surface/cards   Ink-4  #A8A49E  tertiary / disabled
+  Ink-2  #2A2724  borders / dividers     Ink-5  #F2EFEA  primary text on dark
+
+FUNCTIONAL STATES (distinct from information colours, to avoid overloading them):
+  Success  #3A9D5C   confirmations (a ticket secured) — distinct from Forest
+  Warning  #E08A2B   cautions — distinct from Ember Gold's "energy" meaning
+  Error    #D64545   failures — distinct from Coral's "live" meaning
+  Info     #4A90B8   neutral system messages
+
+  NOTE: functional states are deliberately NOT the information colours. A failed
+  payment must never wear Live Coral — Coral means LIVE, only and always.
+```
+
+### Accessibility (NEW — non-negotiable for the Africa-first baseline)
+```
+- All text/background pairs meet WCAG AA (4.5:1 body, 3:1 large) on Midnight.
+- Information colour is NEVER the sole carrier of meaning — always paired with a
+  label, icon, or position (colour-blind safety; ~8% of male users).
+  "Live" = coral pill + the word "LIVE" + top position, not coral alone.
+- Coral on Midnight and Gold on Midnight must be verified for contrast; darken
+  text or add a surface behind small coloured text where needed.
+```
+
+---
+
+## Chapter 5 — Typography (MATURING)
+
+### The Type Trio (LOCKED roles)
+```
+Space Grotesk   Display · wordmark · headlines · the City Pulse count.
+                Carries personality and energy. Used big and confident.
+Inter           Body · UI · labels · everything functional. Maximum legibility
+                on a small, cheap screen. The workhorse.
+Space Mono      Data · timestamps · counts · ticket codes. The "instrument
+                readout" of a living system. Used sparingly, for precision.
+```
+
+### The Scale (NEW — was entirely absent; needed to build any screen)
+A mobile-first modular scale, sized for a 2GB Android at arm's length:
+```
+ROLE          FONT           SIZE/LINE    WEIGHT     USE
+Display       Space Grotesk  32 / 38      700        City Pulse hero, splash
+H1            Space Grotesk  26 / 32      600        screen titles
+H2            Space Grotesk  21 / 28      600        section heads
+H3            Inter          18 / 24      600        card titles
+Body          Inter          16 / 24      400        primary reading (min 16 — never smaller for body)
+Body-strong   Inter          16 / 24      600        emphasis
+Caption       Inter          14 / 20      400/500    metadata, helper text
+Micro         Inter          12 / 16      500        legal, timestamps (use rarely)
+Data          Space Mono     14 / 20      400        counts, codes, times
+```
+Rules: body text never below 16px (3G-era readability + accessibility). Line
+length caps naturally on mobile. Space Grotesk never for long reading. Space Mono
+never for prose.
+
+### The Spacing Scale (RATIFIED 2026-07-18 — founder approval via the A-00 foundation sheet)
+An 8px grid, logical px: `xs 4 · sm 8 · md 16 · lg 24 · xl 32 · xxl 48`.
+Deliberately boring (standard Flutter/Material convention); canonical source
+`lib/core/theme/zuka_spacing.dart`. Image weight budgets remain PROPOSED.
+
+---
+
+## Chapter 6 — The Wordmark & Symbol (MATURING — spec, not just an idea)
+
+### The Concept (LOCKED idea)
+```
+The Z rendered as a continuous waveform — simultaneously an oscilloscope trace,
+a heartbeat, and the letter Z. When the city is alive, the Z pulses.
+```
+
+### Toward a Specification (NEW — Design Council to finalise construction)
+The idea was never specified enough to draw consistently. The maturing brief:
+```
+FORM        A single unbroken stroke that reads as 'Z': the top bar, the
+            diagonal as a waveform peak-and-trough, the bottom bar as the
+            settled baseline. One continuous line — never disconnected segments.
+PULSE       The diagonal's amplitude is the "alive" signal. At rest: a gentle
+            wave. When live content is present (City Pulse active): the wave
+            animates — a single travelling pulse, ~1.2s, never a frantic loop.
+WEIGHT      Stroke weight derived from Space Grotesk's heavier weights so the
+            mark sits in family with the wordmark.
+CLEARSPACE  Minimum clear space = the height of the Z on all sides.
+MIN SIZE    Legible at 24px (app icon corner, nav bar). Below that, use the
+            simplified rest-state (no animation, simpler wave).
+COLOUR      On Midnight: Ember Gold at rest; a single Coral pulse-frame may
+            travel the wave when live content exists (the only decorative-
+            adjacent use of Coral, and even here it signals "alive").
+WORDMARK    "ZUKA" in Space Grotesk, tight-but-not-cramped tracking, the
+            waveform-Z replacing or leading the literal Z. Lockup variants:
+            horizontal (wordmark), symbol-only (app icon), stacked (splash).
+```
+This is a build brief, not a final lockup — generating the actual vector is a
+Design Council task, gated by the Brand Law above.
+
+---
+
+## Chapter 7 — The Brand–Product Bridge (NEW — ZUKA's most distinctive asset)
+
+ZUKA's brand is not expressed mainly through a logo. It is expressed through the
+**living information system** — and this connection was never written down. This
+is the chapter that makes the brand uniquely ZUKA's.
+
+```
+The brand IS the live system. Every live signal is a brand moment:
+
+CITY PULSE STRIP    "47 events live in Kampala" + rising bars = the essence
+                    ("the city, alive") stated literally, every app open.
+GO LIVE             The pulse of the waveform Z made real: a venue makes the
+                    city come alive, and the brand's core promise fires.
+CROWD METER         Quiet → Picking Up → Packed: energy as information, in the
+                    information-colour ramp (neutral → gold → coral).
+HEAT MAP            The city literally glowing where it's alive. Coral pulses
+                    on a Midnight map = the brand in one image.
+LIVE WALL           Real human moments (Vibe Drops) = "warm, local, real" —
+                    the personality made visible, never stock imagery.
+
+DESIGN CONSEQUENCE: stock photography and generic "event app" illustration are
+OFF-BRAND. ZUKA's imagery is real Kampala, real venues, real crowds, real
+moments — or it is the abstract glow of the live system itself. Never a smiling
+model holding a phone.
+```
+
+---
+
+## Chapter 8 — Brand Governance
+
+```
+ZONE                  WHAT                                   AUTHORITY
+Brand Law (locked)    positioning · essence · voice          Stable — Arch + Founder
+                      principles · colour-as-information
+Brand System (adaptive) type scale · token values · logo     Adaptive — Design Council
+                      construction · neutral/functional ramps
+Dormant               sub-brands · multi-market · campaigns   Volume 24 register
+
+CONSISTENCY ENFORCEMENT:
+  - The zuka-designer agent treats this volume as brand reference (good UX may
+    win conflicts, but deviations are logged — see that agent's loop).
+  - The zuka-growth agent treats Chapters 1-3 as hard voice/messaging law.
+  - Brand-law changes require founder sign-off; brand-system refinements are
+    Design Council decisions recorded in the living design doc.
+```
+
+---
+
+## Chapter 9 — What Stays Dormant (the discipline, restated)
+
+```
+NOT NOW (architected as brand-extensible, built when the market arrives):
+  - Sub-brand system for Zuka Ride, Zuka Pulse Reports, Zuka for venues
+  - Multi-market visual adaptation (Nairobi, Lagos, …)
+  - Multi-language brand voice (Luganda, Swahili, French brand registers)
+  - Campaign/seasonal brand systems
+  - Merchandise, physical brand, event-activation brand kits
+
+These are real and coming (Volume 24 trajectory). They are not MVP work. The
+brand is built to extend into them — that is why the strategy is locked and the
+system is tokenised — but none are built now.
+```
+
+---
+
+## Chapter 10 — Founder Rules
+
+```
+1. The brand is the live system, not the logo.
+2. Colour carries meaning — never decorate with an information colour.
+3. Speak present-tense, local, warm, honest. Show energy; never manufacture it.
+4. Real Kampala over stock imagery, always.
+5. Lock the strategy; let the system mature. Keep expansion-brand dormant.
+The brand succeeds when a person feels the city come alive before they read a
+single word.
+```
+
+---
+
+> **Volume 25 — The Brand & Identity System**
+> Part VIII — Brand & Expression
+> Strategy locked. System maturing. The city, alive.
